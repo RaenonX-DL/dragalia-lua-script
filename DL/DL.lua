@@ -1,7 +1,7 @@
 PHONE_RESOLUTION = "WQHD" -- WQHD / FHD+
 
 -- States
-local UNKNOWN, READY, IN_BATTLE, END = "Unknown", "Ready", "Battle", "End"
+local UNKNOWN, READY, IN_BATTLE, END, POSTGAME_COMPLETED = "Unknown", "Ready", "Battle", "End", "pgcoml"
 current_state = UNKNOWN
 
 begin_t = Timer()
@@ -21,6 +21,7 @@ _PathReadyText = _PathParent .. "ready.png"
 _PathUnreadyText = _PathParent .. "unready.png"
 _PathDragonGage = _PathParent .. "gage.png"
 _PathEndGameCheckItem = _PathParent .. "next.png"
+_PathCommonScreenCheckItem = _PathParent .. "common.png"
 
 if PHONE_RESOLUTION == "FHD+" then
 	_RegionMenu = Region(955, 125, 1065, 235)
@@ -41,6 +42,7 @@ elseif PHONE_RESOLUTION == "WQHD" then
 	_RegionReadyText = Region(1089, 2422, 1200, 2496)
 	_RegionGage = Region(36, 2220, 88, 2335)
 	_RegionEndGameCheckItem = Region(1012, 2629, 1148, 2703)
+	_RegionCommonScreenCheckItem = Region(205, 125, 270, 170)
 	
 	_SkillY = 2624
 	_LocationSkill1 = Location(523, _SkillY)
@@ -51,6 +53,9 @@ elseif PHONE_RESOLUTION == "WQHD" then
 	_LocationDragon = Location(202, 2229)
 	_LocationCommonClick = Location(1199, 1801)
 	_LocationCommonClickBattle = Location(714, 1491)
+	_LocationProceedNext = Location(1097, 2665)
+	_LocationNoContinue = Location(638, 2288)
+	_LocationCloseEXDialog = Location(720, 1813)
 else
 	scriptExit(string.format("Unknown Phone Resolution. Should be WQHD or FHD+. (%s)", PHONE_RESOLUTION))
 end
@@ -130,22 +135,19 @@ function check_in_room()
 	return false
 end
 
--- NOT USING --
-function check_dragon()
-	result = regionFindAllNoFindException(_RegionGage, _PathDragonGage)
+function check_end_game()
+	result = regionFindAllNoFindException(_RegionEndGameCheckItem, _PathEndGameCheckItem)
 	for i, m in ipairs(result) do
-		click(_LocationDragon)
-		
-		current_state = IN_BATTLE
+		current_state = END
 		return true
 	end
 	return false
 end
 
-function check_end_game()
-	result = regionFindAllNoFindException(_RegionEndGameCheckItem, _PathEndGameCheckItem)
+function check_post_game()
+	result = regionFindAllNoFindException(_RegionCommonScreenCheckItem, _PathCommonScreenCheckItem)
 	for i, m in ipairs(result) do
-		current_state = END
+		current_state = POSTGAME_COMPLETED
 		return true
 	end
 	return false
@@ -168,6 +170,19 @@ function set_state()
 	current_state = UNKNOWN
 end
 
+-- NOT USING --
+function check_dragon()
+	result = regionFindAllNoFindException(_RegionGage, _PathDragonGage)
+	
+	for i, m in ipairs(result) do
+		click(_LocationDragon)
+		
+		current_state = IN_BATTLE
+		return true
+	end
+	return false
+end
+	
 function generate_toast()
 	setStopMessage(string.format("Elapsed Time: %.3f s", begin_t:check()))
 	if _ToastEnable and last_toast:check() > _ToastCooldownSeconds then
@@ -190,9 +205,14 @@ while true do
 		check_end_game()
 		click_common()
 	elseif current_state == END then
+		click(_LocationProceedNext)
+		click(_LocationCloseEXDialog)
+		click(_LocationNoContinue)
+		check_post_game()
+	elseif current_state == POSTGAME_COMPLETED then
 		vibrate(0.5)
 		setStopMessage(string.format("Elapsed Time: %.3f s", begin_t:check()))
-		scriptExit("Script Auto End")
+		scriptExit("Script Auto Terminate")
 	else
 		set_state()
 	end
