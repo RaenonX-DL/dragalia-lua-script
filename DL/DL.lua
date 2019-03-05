@@ -1,7 +1,7 @@
 PHONE_RESOLUTION = "WQHD" -- WQHD / FHD+
 
 -- States
-local UNKNOWN, READY, IN_BATTLE, END, POSTGAME_COMPLETED = "Unknown", "Ready", "Battle", "End", "pgcoml"
+local UNKNOWN, READY, IN_BATTLE, END, READY_SCREEN = "Unknown", "Ready", "Battle", "End", "rdyscr"
 current_state = UNKNOWN
 
 begin_t = Timer()
@@ -22,6 +22,7 @@ _PathUnreadyText = _PathParent .. "unready.png"
 _PathDragonGage = _PathParent .. "gage.png"
 _PathEndGameCheckItem = _PathParent .. "next.png"
 _PathCommonScreenCheckItem = _PathParent .. "common.png"
+_PathHostTxt = _PathParent .. "host.png"
 
 if PHONE_RESOLUTION == "FHD+" then
 	_RegionMenu = Region(955, 125, 1065, 235)
@@ -40,6 +41,7 @@ if PHONE_RESOLUTION == "FHD+" then
 elseif PHONE_RESOLUTION == "WQHD" then
 	_RegionMenu = Region(1291, 114, 1393, 212)
 	_RegionReadyText = Region(1089, 2422, 1200, 2496)
+	_RegionHostText = Region(275, 1365, 460, 1435)
 	_RegionGage = Region(36, 2220, 88, 2335)
 	_RegionEndGameCheckItem = Region(1012, 2629, 1148, 2703)
 	_RegionCommonScreenCheckItem = Region(205, 125, 270, 170)
@@ -55,7 +57,7 @@ elseif PHONE_RESOLUTION == "WQHD" then
 	_LocationCommonClickBattle = Location(714, 1491)
 	_LocationProceedNext = Location(1097, 2665)
 	_LocationNoContinue = Location(638, 2288)
-	_LocationCloseEXDialog = Location(720, 1813)
+	_LocationCloseMiddleDialog = Location(720, 1813)
 else
 	scriptExit(string.format("Unknown Phone Resolution. Should be WQHD or FHD+. (%s)", PHONE_RESOLUTION))
 end
@@ -67,47 +69,20 @@ _ToastCooldownSeconds = 2
 _ToastEnable = false
 _MaxReadyCheckSeconds = 5
 
--- Functions
-function click_common()
-	if last_click:check() > _ClickCooldownSeconds then
-		if current_state == IN_BATTLE then
-			click(_LocationCommonClickBattle)
-		else
-			click(_LocationCommonClick)
-		end
-		last_click:set()
-		generate_toast()
-	else
-		wait(_ClickCooldownSeconds - last_click:check())
-		click_common()
-	end
+-- Checks
+
+function _check_set_state(_region, _path, _new_state)
+	_check_set_state_true_actions(_region, _path, _new_state, function() end)
 end
 
-function check_in_battle()
-	result = regionFindAllNoFindException(_RegionMenu, _PathMenu)
+function _check_set_state_true_actions(_region, _path, _new_state, _true_func)
+	result = regionFindAllNoFindException(_region, _path)
 	for i, m in ipairs(result) do
-		use_skills()
-	
-		current_state = IN_BATTLE
+		current_state = _new_state
+		_true_func()
 		return true
 	end
 	return false
-end
-
-function use_skills()
-	click_common()
-
-	if last_skill:check() > _SkillIntervalSecond then
-		click(_LocationDragon)
-	
-		click(_LocationSkill1)
-		click(_LocationSkill2)
-		click(_LocationSkill3)
-		
-		last_skill:set()
-	end
-	
-	click_common()
 end
 
 function check_in_room()
@@ -135,23 +110,23 @@ function check_in_room()
 	return false
 end
 
+function check_in_battle()
+	return _check_set_state_true_actions(_RegionMenu, _PathMenu, IN_BATTLE, use_skills)
+end
+
 function check_end_game()
-	result = regionFindAllNoFindException(_RegionEndGameCheckItem, _PathEndGameCheckItem)
-	for i, m in ipairs(result) do
-		current_state = END
-		return true
-	end
-	return false
+	return _check_set_state(_RegionEndGameCheckItem, _PathEndGameCheckItem, END)
 end
 
 function check_post_game()
-	result = regionFindAllNoFindException(_RegionCommonScreenCheckItem, _PathCommonScreenCheckItem)
-	for i, m in ipairs(result) do
-		current_state = POSTGAME_COMPLETED
-		return true
-	end
-	return false
+	return _check_set_state(_RegionCommonScreenCheckItem, _PathCommonScreenCheckItem, READY_SCREEN)
 end
+
+function check_host_left()
+	return _check_set_state_true_actions(_RegionHostText, _PathHostTxt, READY_SCREEN, function() click(_LocationCloseMiddleDialog) end)
+end
+
+-- Bundled Actions
 
 function set_state()
 	click_common()
@@ -168,6 +143,52 @@ function set_state()
 		
 	click_common()
 	current_state = UNKNOWN
+end
+
+function battle_end_click_dialogs()
+	click(_LocationProceedNext)
+	wait(_ClickCooldownSeconds)
+	click(_LocationCloseMiddleDialog)
+	wait(_ClickCooldownSeconds)
+	click(_LocationNoContinue)
+	wait(_ClickCooldownSeconds)
+end
+
+function terminate()
+	vibrate(0.5)
+	setStopMessage(string.format("Elapsed Time: %.3f s", begin_t:check()))
+	scriptExit("Script Execution Completed.")
+end
+
+function use_skills()
+	click_common()
+
+	if last_skill:check() > _SkillIntervalSecond then
+		click(_LocationDragon)
+	
+		click(_LocationSkill1)
+		click(_LocationSkill2)
+		click(_LocationSkill3)
+		
+		last_skill:set()
+	end
+	
+	click_common()
+end
+
+function click_common()
+	if last_click:check() > _ClickCooldownSeconds then
+		if current_state == IN_BATTLE then
+			click(_LocationCommonClickBattle)
+		else
+			click(_LocationCommonClick)
+		end
+		last_click:set()
+		generate_toast()
+	else
+		wait(_ClickCooldownSeconds - last_click:check())
+		click_common()
+	end
 end
 
 -- NOT USING --
@@ -195,6 +216,7 @@ end
 
 while true do
 	if current_state == READY then
+		check_host_left()
 		check_in_battle()
 	elseif current_state == IN_BATTLE then
 		click_common()
@@ -205,14 +227,10 @@ while true do
 		check_end_game()
 		click_common()
 	elseif current_state == END then
-		click(_LocationProceedNext)
-		click(_LocationCloseEXDialog)
-		click(_LocationNoContinue)
+		battle_end_click_dialogs()
 		check_post_game()
-	elseif current_state == POSTGAME_COMPLETED then
-		vibrate(0.5)
-		setStopMessage(string.format("Elapsed Time: %.3f s", begin_t:check()))
-		scriptExit("Script Auto Terminate")
+	elseif current_state == READY_SCREEN then
+		terminate()
 	else
 		set_state()
 	end
