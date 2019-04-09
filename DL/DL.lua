@@ -54,7 +54,7 @@ elseif PHONE_RESOLUTION == "WQHD" then
 	_LocationReady = Location(1084, 2413)
 	_LocationDragon = Location(202, 2229)
 	_LocationCommonClick = Location(1199, 1801)
-	_LocationCommonClickBattle = Location(714, 1491)
+	_LocationCommonClickBattle = Location(714, 1742)
 	_LocationProceedNext = Location(1097, 2665)
 	_LocationNoContinue = Location(638, 2288)
 	_LocationCloseMiddleDialog = Location(720, 1813)
@@ -67,7 +67,7 @@ _SkillIntervalSecond = 1.5
 _ClickCooldownSeconds = 0.15
 _ToastCooldownSeconds = 2
 _ToastEnable = false
-_MaxReadyCheckSeconds = 5
+_MaxReadyCheckSeconds = 20
 
 -- Checks
 

@@ -70,7 +70,7 @@ _LocationRaidQuestsButton = Location(1114, 1954)
 
 _SkillIntervalSecond = 1.5
 
-_ClickCooldownSeconds = 0.2
+_ClickCooldownSeconds = 0.25
 _ToastCooldownSeconds = 2
 _ToastEnable = true
 _MaxReadyCheckSeconds = 5
@@ -122,7 +122,8 @@ function check_in_room()
 		
 		last_ready_check = nil
 	else
-		_check_set_state_true_actions(_RegionReadyText, _PathReadyText, READY, function() 
+		_check_set_state_true_actions(_RegionReadyText, _PathReadyText, READY, function()
+			update_state(READY)
 			click(_LocationReady)
 			
 			last_ready_check = Timer()
@@ -161,22 +162,21 @@ end
 
 -- Bundled Actions
 function update_state(new_state)
-	previous_state = current_state
-	current_state = new_state
+	if current_state ~= new_state then
+		previous_state = current_state
+		current_state = new_state
+	end
 end
 
 function analyze_current_state()
 	click_common()
-	if check_in_room() then
-		update_state(READY)
-		return
-	end
+	if check_in_room() then return end
 		
 	click_common()
-	if check_in_battle() then
-		update_state(IN_BATTLE)
-		return
-	end
+	if check_in_battle() then return end
+		
+	click_common()
+	if check_post_game() then return end
 		
 	current_state = UNKNOWN
 end
@@ -247,8 +247,8 @@ function count_analyze_state()
 end
 
 function updateStopMessage()
-	setStopMessage(string.format("Elapsed Time: %.3f s (%d runs)\nState: %s", 
-								begin_t:check(), counter_in_battle, current_state))
+	setStopMessage(string.format("Elapsed Time: %.3f s (%d runs)\nState: %s\nPrevious State: %s", 
+								begin_t:check(), counter_in_battle, current_state, previous_state))
 end
 
 function generate_toast()
@@ -310,6 +310,7 @@ while true do
 	elseif current_state == ROOM_SELECT then
 		click(_LocationRandomRoom)
 		check_room_finding()
+		check_in_room()
 		check_insufficient_wings()
 	elseif current_state == FINDING_ROOM then
 		check_in_room()
