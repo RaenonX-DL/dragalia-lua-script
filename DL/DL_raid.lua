@@ -2,7 +2,7 @@
 
 -- States
 local UNKNOWN, READY, IN_BATTLE, END, READY_SCREEN = "Unknown", "Ready", "Battle", "End", "CommonScreen"
-local ROOM_SELECT, FINDING_ROOM, INSUFFICIENT_WINGS = "RoomSelect", "FindRoom", "WingsInsuf"
+local ROOM_SELECT, FINDING_ROOM, INSUFFICIENT_WINGS, DIFFICULTY = "RoomSelect", "FindRoom", "WingsInsuf", "Difficulty"
 
 Settings:setCompareDimension(true, 1440)
 Settings:setScriptDimension(true, 1440)
@@ -21,6 +21,8 @@ _PathHostTxt = _PathParent .. "host.png"
 _PathCloseTxt = _PathParent .. "close.png"
 _PathRoomFindingTxt = _PathParent .. "finding.png"
 _PathInsufficientTxt = _PathParent .. "insufficient.png"
+_PathDifficultyCheckItem = _PathParent .. "diff.png"
+_PathRaidText = _PathParent .. "raid.png"
 
 --- if PHONE_RESOLUTION == "FHD+" then
 --- 	_RegionMenu = Region(955, 125, 1065, 235)
@@ -46,6 +48,8 @@ _RegionCommonScreenCheckItem = Region(205, 125, 270, 170)
 _RegionRoomSelectCloseTxt = Region(630, 2140, 685, 2200)
 _RegionRoomFindingTxt = Region(715, 1460, 830, 1515)
 _RegionInsufficientWings = Region(410, 1850, 550, 1940)
+_RegionDifficultyCheckItem = Region(35, 600, 220, 670)
+_RegionRaidText = Region(70, 1745, 450, 1815)
 
 _SkillY = 2624
 _LocationSkill1 = Location(523, _SkillY)
@@ -54,12 +58,13 @@ _LocationSkill3 = Location(1084, _SkillY)
 
 _LocationReady = Location(1084, 2413)
 _LocationDragon = Location(202, 2229)
-_LocationCommonClick = Location(1188, 1850)
+_LocationCommonClick = Location(1188, 1730)
 _LocationCommonClickBattle = Location(714, 1491)
 _LocationProceedNext = Location(1097, 2665)
-_LocationNoContinue = Location(638, 2288)
+_LocationNoContinue = Location(1114, 2880)
 _LocationCloseMiddleDialog = Location(720, 1813)
-_LocationQuestTop = Location(39, 1038)
+_LocationQuestTop = Location(1400, 1632)
+_LocationDifficultyTop = Location(736, 1008)
 _LocationRandomRoom = Location(1228, 1774)
 _LocationDiamantiumsRecover = Location(720, 995)
 _LocationRecoverButtonAndClose = Location(816, 1851)
@@ -132,6 +137,14 @@ function check_in_room()
 	return false
 end
 
+function scan_click_raid()
+	result = regionFindAllNoFindException(_RegionRaidText, _PathRaidText)
+	for i, m in ipairs(result) do
+		setStopMessage(m.typeOf())
+		-- TODO: Not working
+	end
+end
+
 function check_in_battle()
 	return _check_set_state_true_actions(_RegionMenu, _PathMenu, IN_BATTLE, use_skills)
 end
@@ -142,6 +155,10 @@ end
 
 function check_post_game()
 	return _check_set_state(_RegionCommonScreenCheckItem, _PathCommonScreenCheckItem, READY_SCREEN)
+end
+
+function check_difficulty_screen()
+	return _check_set_state(_RegionDifficultyCheckItem, _PathDifficultyCheckItem, DIFFICULTY)
 end
 
 function check_host_left()
@@ -304,9 +321,11 @@ while true do
 		clicks_postgame_dialogs()
 		check_post_game()
 	elseif current_state == READY_SCREEN then
-		if not check_room_select() then
-			click(_LocationQuestTop)
-		end
+		click(_LocationQuestTop)
+		check_difficulty_screen()
+	elseif current_state == DIFFICULTY then
+		click(_LocationDifficultyTop)
+		check_room_select()
 	elseif current_state == ROOM_SELECT then
 		click(_LocationRandomRoom)
 		check_room_finding()
