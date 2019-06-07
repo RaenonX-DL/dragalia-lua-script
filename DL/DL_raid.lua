@@ -63,7 +63,7 @@ _LocationCommonClickBattle = Location(714, 1491)
 _LocationProceedNext = Location(1097, 2665)
 _LocationNoContinue = Location(1114, 2880)
 _LocationCloseMiddleDialog = Location(720, 1813)
-_LocationQuestTop = Location(1400, 1632)
+_LocationQuestTop = Location(1361, 1607)
 _LocationDifficultyTop = Location(736, 1008)
 _LocationRandomRoom = Location(1228, 1774)
 _LocationDiamantiumsRecover = Location(720, 995)
@@ -76,7 +76,7 @@ _LocationRaidQuestsButton = Location(1114, 1954)
 _SkillIntervalSecond = 1.5
 
 _ClickCooldownSeconds = 0.25
-_ToastCooldownSeconds = 2
+_ToastCooldownSeconds = 15
 _ToastEnable = true
 _MaxReadyCheckSeconds = 5
 _MaxRepeatCheckCount = 3
@@ -319,9 +319,13 @@ while true do
 	elseif current_state == END then
 		in_battle_recorded = false
 		clicks_postgame_dialogs()
+		wait(0.7)
 		check_post_game()
 	elseif current_state == READY_SCREEN then
 		click(_LocationQuestTop)
+		wait(0.7)
+		check_difficulty_screen()
+		wait(0.7)
 		check_difficulty_screen()
 	elseif current_state == DIFFICULTY then
 		click(_LocationDifficultyTop)
