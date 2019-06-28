@@ -31,3 +31,13 @@ DL_raid is the script for Raid Events ONLY.
 ### Current Available Functions
 - Auto confirm raid box reset **(Available on WQHD only)**
 - Auto scout
+----
+# DL Continue
+### Currently Tested Operatable Environment
+- Samsung Galaxy S9+ on WQHD
+
+### Current Available Resolutions
+- WQHD - 1440 x 2960
+
+### Current Available Functions
+- Uses the structure same as `DL Raid Scout` but adapt it to most of the daily event. (Dragon's Trials, Imperial Onslaughts)
