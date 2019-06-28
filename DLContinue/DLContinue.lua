@@ -7,7 +7,7 @@ _PathParent = "/"
 _PathMenu = _PathParent .. "menu.png"
 _PathReadyText = _PathParent .. "ready.png"
 _PathUnreadyText = _PathParent .. "unready.png"
-_PathEndGameCheckItem = _PathParent .. "plyr.png"
+_PathEndGameCheckItem = _PathParent .. "next.png"
 _PathCommonScreenCheckItem = _PathParent .. "common.png"
 _PathHostTxt = _PathParent .. "host.png"
 _PathRoomFindingTxt = _PathParent .. "finding.png"
@@ -18,8 +18,8 @@ _PathToRandomRoomItem = _PathParent .. "randroom.png"
 _RegionMenu = Region(1291, 114, 1393, 212)
 _RegionReadyText = Region(1089, 2422, 1200, 2496)
 _RegionHostText = Region(275, 1365, 460, 1435)
-_RegionEndGameCheckItem = Region(120, 370, 800, 880)
-_RegionCommonScreenCheckItem = Region(205, 125, 270, 170)
+_RegionEndGameCheckItem = Region(1015, 2635, 1140, 2710)
+_RegionCommonScreenCheckItem = Region(305, 2585, 425, 2710)
 _RegionRoomFindingTxt = Region(710, 1450, 835, 1520)
 _RegionInsufficientWings = Region(410, 1850, 550, 1940)
 _RegionFriendSelectItem = Region(285, 845, 400, 920)
@@ -70,19 +70,40 @@ unknown_state_count = 0
 
 in_battle_recorded = false
 
+file_stream = io.open(scriptPath().."log.txt", "a+")
+file_stream:write("\n\n\n\n===============\n")
+file_stream:write(os.date("Starts at %c\n"))
+
 -- Static functions
+function _check_set_state_repeat(_region, _path, _new_state, _check_times)
+	return _check_set_state_true_actions_multi(_region, _path, _new_state, function() end, _check_times)
+end
+
 function _check_set_state(_region, _path, _new_state)
-	_check_set_state_true_actions(_region, _path, _new_state, function() end)
+	return _check_set_state_true_actions(_region, _path, _new_state, function() end)
 end
 
 function _check_set_state_true_actions(_region, _path, _new_state, _true_func)
-	result = regionFindAllNoFindException(_region, _path)
-	for i, m in ipairs(result) do
+	return _check_set_state_true_actions_multi(_region, _path, _new_state, _true_func, 1)
+end
+
+function _check_set_state_true_actions_multi(_region, _path, _new_state, _true_func, _check_times)
+	found = false
+	
+	for i = 0, _check_times do
+		result = regionFindAllNoFindException(_region, _path)
+		for i, m in ipairs(result) do
+			found = true
+			break
+		end
+	end
+	
+	if found then
 		update_state(_new_state)
 		_true_func()
-		return true
 	end
-	return false
+	
+	return found
 end
 
 function clicks_postgame_dialogs()
@@ -216,11 +237,11 @@ function check_in_battle()
 end
 
 function check_end_game()
-	return _check_set_state(_RegionEndGameCheckItem, _PathEndGameCheckItem, END)
+	return _check_set_state_repeat(_RegionEndGameCheckItem, _PathEndGameCheckItem, END, 3)
 end
 
 function check_post_game()
-	return _check_set_state(_RegionCommonScreenCheckItem, _PathCommonScreenCheckItem, READY_SCREEN)
+	return _check_set_state_repeat(_RegionCommonScreenCheckItem, _PathCommonScreenCheckItem, READY_SCREEN, 3)
 end
 
 function check_friend_select_screen()
@@ -271,6 +292,7 @@ end
 ------- MAIN -------
 while true do
 	if current_state == READY then
+		file_stream:write(os.date("`READY` state at %c |"))
 		check_host_left_series()
 		check_in_room() -- Prevent unready but set to ready
 		check_in_battle()
@@ -289,6 +311,7 @@ while true do
 		click_common()
 	elseif current_state == END then
 		in_battle_recorded = false
+		file_stream:write(os.date("| `END` state at %c\n"))
 		clicks_postgame_dialogs()
 		wait(0.7)
 		check_post_game()
