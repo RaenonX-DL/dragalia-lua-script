@@ -19,7 +19,7 @@ _RegionMenu = Region(1291, 114, 1393, 212)
 _RegionReadyText = Region(1089, 2422, 1200, 2496)
 _RegionHostText = Region(275, 1365, 460, 1435)
 _RegionEndGameCheckItem = Region(1015, 2635, 1140, 2710)
-_RegionCommonScreenCheckItem = Region(195, 120, 350, 175)
+_RegionCommonScreenCheckItem = Region(1225, 102, 1362, 241)
 _RegionRoomFindingTxt = Region(710, 1450, 835, 1520)
 _RegionInsufficientWings = Region(410, 1850, 550, 1940)
 _RegionFriendSelectItem = Region(285, 845, 400, 920)
@@ -35,7 +35,7 @@ _LocationDragon = Location(202, 2229)
 _LocationCommonClick = Location(1188, 1730)
 _LocationCommonClickBattle = Location(714, 1491)
 _LocationProceedNext = Location(1097, 2665)
-_LocationNoContinue = Location(1114, 2880)
+_LocationNoContinue = Location(638, 2288)
 _LocationCloseMiddleDialog = Location(720, 1813)
 _LocationQuestTop = Location(137, 1025)
 _LocationRandomRoom = Location(178, 1903)
@@ -71,16 +71,20 @@ unknown_state_count = 0
 in_battle_recorded = false
 
 file_stream = io.open(scriptPath().."log.txt", "a+")
-file_stream:write("\n\n===============\n")
+file_stream:write("\n===============\n")
 file_stream:write(os.date("Starts at %c\n"))
 
 -- Static functions
-function _check_set_state(_region, _path, _new_state)
-	return _check_set_state_true_actions(_region, _path, _new_state, function() end)
+function _check_set_state_wait_time(_region, _path, _new_state, _wait_time)
+	return _check_set_state_true_actions(_region, _path, _new_state, function() end, _wait_time)
 end
 
-function _check_set_state_true_actions(_region, _path, _new_state, _true_func)
-	found = _region:exists(_path, 0.1)
+function _check_set_state(_region, _path, _new_state)
+	return _check_set_state_true_actions(_region, _path, _new_state, function() end, 0.1)
+end
+
+function _check_set_state_true_actions(_region, _path, _new_state, _true_func, _wait_time)
+	found = _region:exists(_path, _wait_time)
 	
 	if found then
 		update_state(_new_state)
@@ -195,7 +199,7 @@ function check_in_room()
 			click(_LocationReady)
 			
 			last_ready_check = Timer()
-		end)
+		end, 0.2)
 	end
 	return false
 end
@@ -216,7 +220,7 @@ function check_host_left_series()
 end
 
 function check_in_battle()
-	return _check_set_state_true_actions(_RegionMenu, _PathMenu, IN_BATTLE, use_skills)
+	return _check_set_state_true_actions(_RegionMenu, _PathMenu, IN_BATTLE, use_skills, 0.1)
 end
 
 function check_end_game()
@@ -224,7 +228,7 @@ function check_end_game()
 end
 
 function check_post_game()
-	return _check_set_state(_RegionCommonScreenCheckItem, _PathCommonScreenCheckItem, READY_SCREEN)
+	return _check_set_state_wait_time(_RegionCommonScreenCheckItem, _PathCommonScreenCheckItem, READY_SCREEN, 0.75)
 end
 
 function check_friend_select_screen()
@@ -232,7 +236,7 @@ function check_friend_select_screen()
 end
 
 function check_host_left()
-	return _check_set_state_true_actions(_RegionHostText, _PathHostTxt, READY_SCREEN, function() click(_LocationCloseMiddleDialog) end)
+	return _check_set_state_true_actions(_RegionHostText, _PathHostTxt, READY_SCREEN, function() click(_LocationCloseMiddleDialog) end, 0.3)
 end
 
 function check_random_room()
@@ -246,7 +250,7 @@ end
 function check_insufficient_wings()
 	return _check_set_state(_RegionInsufficientWings, _PathInsufficientTxt, INSUFFICIENT_WINGS)
 end
-
+	
 -- Bundled Actions
 function update_state(new_state)
 	if current_state == nil then
@@ -266,9 +270,6 @@ function analyze_current_state()
 	click_common()
 	if check_in_battle() then return end
 		
-	click_common()
-	if check_post_game() then return end
-		
 	current_state = UNKNOWN
 end
 
@@ -282,7 +283,7 @@ while true do
 		if not in_battle_recorded then 
 			counter_in_battle = counter_in_battle + 1
 			in_battle_recorded = true 
-			file_stream:write(os.date("Battle Started at %c\n"))
+			file_stream:write(string.format("Battle #%d Started at %s\n", counter_in_battle, os.date("%c")))
 		end
 	
 		click_common()
@@ -301,7 +302,7 @@ while true do
 		click3(_LocationQuestTop, 0.5)
 		for i = 1, 2 do 
 			wait(0.7)
-			check_friend_select_screen()
+			if check_friend_select_screen() then break end
 		end
 	elseif current_state == FRIEND_SELECT then
 		click3(_LocationMultiPlay, 0.5)

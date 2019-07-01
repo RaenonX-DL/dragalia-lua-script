@@ -1,20 +1,16 @@
---- PHONE_RESOLUTION = "WQHD" -- WQHD / FHD+
-
--- States
 local UNKNOWN, READY, IN_BATTLE, END, READY_SCREEN = "Unknown", "Ready", "Battle", "End", "CommonScreen"
 local ROOM_SELECT, FINDING_ROOM, INSUFFICIENT_WINGS, DIFFICULTY = "RoomSelect", "FindRoom", "WingsInsuf", "Difficulty"
 
 Settings:setCompareDimension(true, 1440)
+Settings:setCompareDimension(false, 2960)
 Settings:setScriptDimension(true, 1440)
+Settings:setScriptDimension(false, 2960)
 
--- Configuration Variables
---- _PathParent = PHONE_RESOLUTION .. "/"
 _PathParent = "WQHD/"
 
 _PathMenu = _PathParent .. "menu.png"
 _PathReadyText = _PathParent .. "ready.png"
 _PathUnreadyText = _PathParent .. "unready.png"
-_PathDragonGage = _PathParent .. "gage.png"
 _PathEndGameCheckItem = _PathParent .. "next.png"
 _PathCommonScreenCheckItem = _PathParent .. "common.png"
 _PathHostTxt = _PathParent .. "host.png"
@@ -22,34 +18,16 @@ _PathCloseTxt = _PathParent .. "close.png"
 _PathRoomFindingTxt = _PathParent .. "finding.png"
 _PathInsufficientTxt = _PathParent .. "insufficient.png"
 _PathDifficultyCheckItem = _PathParent .. "diff.png"
-_PathRaidText = _PathParent .. "raid.png"
 
---- if PHONE_RESOLUTION == "FHD+" then
---- 	_RegionMenu = Region(955, 125, 1065, 235)
---- 	_RegionReadyText = Region(820, 1760, 901, 1806)
---- 	_RegionGage = Region(20, 1620, 75, 1720)
---- 	_RegionEndGameCheckItem = Region(830, 1940, 940, 2005)
---- 	
---- 	_SkillY = 1987
---- 	_LocationSkill1 = Location(387, _SkillY)
---- 	_LocationSkill2 = Location(600, _SkillY)
---- 	_LocationSkill3 = Location(817, _SkillY)
---- 
---- 	_LocationReady = Location(830, 1739)
---- 	_LocationDragon = Location(158, 1640)
---- 	_LocationCommonClick = Location(887, 1344)
---- elseif PHONE_RESOLUTION == "WQHD" then
 _RegionMenu = Region(1291, 114, 1393, 212)
 _RegionReadyText = Region(1089, 2422, 1200, 2496)
 _RegionHostText = Region(275, 1365, 460, 1435)
-_RegionGage = Region(36, 2220, 88, 2335)
 _RegionEndGameCheckItem = Region(1012, 2629, 1148, 2703)
 _RegionCommonScreenCheckItem = Region(205, 125, 270, 170)
 _RegionRoomSelectCloseTxt = Region(630, 2140, 685, 2200)
 _RegionRoomFindingTxt = Region(715, 1460, 830, 1515)
 _RegionInsufficientWings = Region(410, 1850, 550, 1940)
-_RegionDifficultyCheckItem = Region(35, 600, 220, 670)
-_RegionRaidText = Region(70, 1745, 450, 1815)
+_RegionDifficultyCheckItem = Region(40, 600, 335, 660)
 
 _SkillY = 2624
 _LocationSkill1 = Location(523, _SkillY)
@@ -68,17 +46,13 @@ _LocationDifficultyTop = Location(736, 1008)
 _LocationRandomRoom = Location(1228, 1774)
 _LocationDiamantiumsRecover = Location(720, 995)
 _LocationRecoverButtonAndClose = Location(816, 1851)
-_LocationRaidQuestsButton = Location(1114, 1954)
---- else
---- 	scriptExit(string.format("Unknown Phone Resolution. Should be WQHD or FHD+. (%s)", PHONE_RESOLUTION))
---- end
 
 _SkillIntervalSecond = 1.5
 
 _ClickCooldownSeconds = 0.25
-_ToastCooldownSeconds = 15
+_ToastCooldownSeconds = 10
 _ToastEnable = true
-_MaxReadyCheckSeconds = 5
+_MaxReadyCheckSeconds = 3
 _MaxRepeatCheckCount = 3
 _MaxUnknownStateCheckCount = 60
 
@@ -98,29 +72,41 @@ unknown_state_count = 0
 
 in_battle_recorded = false
 
+file_stream = io.open(scriptPath().."log.txt", "a+")
+file_stream:write("\n===============\n")
+file_stream:write(os.date("Starts at %c\n"))
+
 -- Checks
+function _check_set_state_wait_time(_region, _path, _new_state, _wait_time)
+	return _check_set_state_true_actions(_region, _path, _new_state, function() end, _wait_time)
+end
+
 function _check_set_state(_region, _path, _new_state)
-	_check_set_state_true_actions(_region, _path, _new_state, function() end)
+	return _check_set_state_true_actions(_region, _path, _new_state, function() end, 0.1)
 end
 
 function _check_set_state_true_actions(_region, _path, _new_state, _true_func)
-	result = regionFindAllNoFindException(_region, _path)
-	for i, m in ipairs(result) do
+	return _check_set_state_true_actions_wait_time(_region, _path, _new_state, _true_func, 0.1)
+end
+
+function _check_set_state_true_actions_wait_time(_region, _path, _new_state, _true_func, _wait_time)
+	found = _region:exists(_path, _wait_time)
+	
+	if found then
 		update_state(_new_state)
 		_true_func()
-		return true
 	end
-	return false
+	
+	return found
 end
 
 function check_in_room()
 	if last_ready_check ~= nil then
 		result = regionFindAllNoFindException(_RegionReadyText, _PathUnreadyText)
-		for i, m in ipairs(result) do
-			if last_ready_check:check() > _MaxReadyCheckSeconds then
-				update_state(READY)
-				last_ready_check = nil
-			end
+
+		if _RegionReadyText:exists(_PathUnreadyText, 0.4) and last_ready_check:check() > _MaxReadyCheckSeconds then
+			update_state(READY)
+			last_ready_check = nil
 			
 			return true
 		end
@@ -135,14 +121,6 @@ function check_in_room()
 		end)
 	end
 	return false
-end
-
-function scan_click_raid()
-	result = regionFindAllNoFindException(_RegionRaidText, _PathRaidText)
-	for i, m in ipairs(result) do
-		setStopMessage(m.typeOf())
-		-- TODO: Not working
-	end
 end
 
 function check_in_battle()
@@ -187,13 +165,14 @@ end
 
 function analyze_current_state()
 	click_common()
+	if check_difficulty_screen() then return end
+	-- Check difficulty at first so if the host left, click once can get a difficulty selection screen
+	
+	click_common()
 	if check_in_room() then return end
 		
 	click_common()
 	if check_in_battle() then return end
-		
-	click_common()
-	if check_post_game() then return end
 		
 	current_state = UNKNOWN
 end
@@ -277,10 +256,6 @@ function generate_toast()
 end
 
 -- NOT USING --
-function check_dragon()
-	return _check_set_state(_RegionGage, _PathDragonGage, IN_BATTLE)
-end
-
 function repeat_check(bool_check_func) 
 	r = false
 	for i = 1, _MaxRepeatCheckCount do
@@ -306,6 +281,7 @@ while true do
 		if not in_battle_recorded then 
 			counter_in_battle = counter_in_battle + 1
 			in_battle_recorded = true 
+			file_stream:write(string.format("Battle #%d Started at %s\n", counter_in_battle, os.date("%c")))
 		end
 	
 		click_common()
