@@ -1,51 +1,59 @@
-local UNKNOWN, READY, IN_BATTLE, END, READY_SCREEN = "Unknown", "Ready", "Battle", "End", "CommonScreen"
+local UNKNOWN, READY, IN_BATTLE, BATTLE_START, END, READY_SCREEN = "Unknown", "Ready", "Battle", "BattleStart", "End", "CommonScreen"
 local ROOM_SELECT, FINDING_ROOM, INSUFFICIENT_WINGS, DIFFICULTY = "RoomSelect", "FindRoom", "WingsInsuf", "Difficulty"
 
 Settings:setCompareDimension(true, 1440)
-Settings:setCompareDimension(false, 2960)
 Settings:setScriptDimension(true, 1440)
-Settings:setScriptDimension(false, 2960)
 
-_PathParent = "WQHD/"
+_PathParent = "/"
+
+_LocationCommonClick = Location(1188, 1730)
 
 _PathMenu = _PathParent .. "menu.png"
+_RegionMenu = Region(1291, 114, 1393, 212)
+
 _PathReadyText = _PathParent .. "ready.png"
 _PathUnreadyText = _PathParent .. "unready.png"
-_PathEndGameCheckItem = _PathParent .. "next.png"
-_PathCommonScreenCheckItem = _PathParent .. "common.png"
-_PathHostTxt = _PathParent .. "host.png"
-_PathCloseTxt = _PathParent .. "close.png"
-_PathRoomFindingTxt = _PathParent .. "finding.png"
-_PathInsufficientTxt = _PathParent .. "insufficient.png"
-_PathDifficultyCheckItem = _PathParent .. "diff.png"
-
-_RegionMenu = Region(1291, 114, 1393, 212)
 _RegionReadyText = Region(1089, 2422, 1200, 2496)
-_RegionHostText = Region(275, 1365, 460, 1435)
+_LocationReady = Location(1084, 2413)
+
+_PathEndGameCheckItem = _PathParent .. "next.png"
 _RegionEndGameCheckItem = Region(1012, 2629, 1148, 2703)
+_LocationProceedNext = Location(1097, 2665)
+_LocationNoContinue = Location(1114, 2880)
+_LocationCloseMiddleDialog = Location(720, 1813)
+
+_PathCommonScreenCheckItem = _PathParent .. "common.png"
 _RegionCommonScreenCheckItem = Region(205, 125, 270, 170)
+
+_LocationQuestTop = Location(1361, 1607)
+_PathCloseTxt = _PathParent .. "close.png"
 _RegionRoomSelectCloseTxt = Region(630, 2140, 685, 2200)
+
+_LocationRandomRoom = Location(1228, 1774)
+_PathRoomFindingTxt = _PathParent .. "finding.png"
 _RegionRoomFindingTxt = Region(715, 1460, 830, 1515)
-_RegionInsufficientWings = Region(410, 1850, 550, 1940)
+
+_LocationDifficultyTop = Location(736, 1008)
+_PathDifficultyCheckItem = _PathParent .. "diff.png"
 _RegionDifficultyCheckItem = Region(40, 600, 335, 660)
+
+_PathHostTxt = _PathParent .. "host.png"
+_RegionHostText = Region(275, 1365, 460, 1435)
+
+_PathInsufficientTxt = _PathParent .. "insufficient.png"
+_RegionInsufficientWings = Region(410, 1850, 550, 1940)
+_LocationDiamantiumsRecover = Location(720, 995)
+_LocationRecoverButtonAndClose = Location(816, 1851)
+
+_LocationBattle1 = Location(720, 2450)
+_LocationBattle2 = Location(720, 1200)
 
 _SkillY = 2624
 _LocationSkill1 = Location(523, _SkillY)
 _LocationSkill2 = Location(795, _SkillY)
 _LocationSkill3 = Location(1084, _SkillY)
-
-_LocationReady = Location(1084, 2413)
 _LocationDragon = Location(202, 2229)
-_LocationCommonClick = Location(1188, 1730)
 _LocationCommonClickBattle = Location(714, 1491)
-_LocationProceedNext = Location(1097, 2665)
-_LocationNoContinue = Location(1114, 2880)
-_LocationCloseMiddleDialog = Location(720, 1813)
-_LocationQuestTop = Location(1361, 1607)
-_LocationDifficultyTop = Location(736, 1008)
-_LocationRandomRoom = Location(1228, 1774)
-_LocationDiamantiumsRecover = Location(720, 995)
-_LocationRecoverButtonAndClose = Location(816, 1851)
 
 _SkillIntervalSecond = 1.5
 
@@ -123,6 +131,10 @@ function check_in_room()
 	return false
 end
 
+function check_in_battle_begin()
+	return _check_set_state(_RegionMenu, _PathMenu, BATTLE_START)
+end
+
 function check_in_battle()
 	return _check_set_state_true_actions(_RegionMenu, _PathMenu, IN_BATTLE, use_skills)
 end
@@ -172,7 +184,7 @@ function analyze_current_state()
 	if check_in_room() then return end
 		
 	click_common()
-	if check_in_battle() then return end
+	if check_in_battle_begin() then return end
 		
 	current_state = UNKNOWN
 end
@@ -193,10 +205,12 @@ function clicks_insufficient_wings()
 	wait(_ClickCooldownSeconds)
 end
 
-function terminate(message)
-	vibrate(0.5)
-	updateStopMessage()
-	scriptExit(message)
+function battle_begin_actions()
+	for i = 1, 12 do
+		swipe(_LocationBattle1, _LocationBattle2)
+		wait(0.5)
+	end
+	swipe(_LocationBattle2, _LocationBattle1)
 end
 
 function use_skills()
@@ -242,6 +256,12 @@ function count_analyze_state()
 	end
 end
 
+function terminate(message)
+	vibrate(0.5)
+	updateStopMessage()
+	scriptExit(message)
+end
+
 function updateStopMessage()
 	setStopMessage(string.format("Elapsed Time: %.3f s (%d runs)\nState: %s\nPrevious State: %s", 
 								begin_t:check(), counter_in_battle, current_state, previous_state))
@@ -276,7 +296,12 @@ while true do
 			update_state(UNKNOWN)
 		end
 		check_in_room() -- Prevent unready but set to ready
-		check_in_battle()
+		check_in_battle_begin()
+	elseif current_state == BATTLE_START then
+		toast("BTS")
+		battle_begin_actions()
+		toast("BTE")
+		update_state(IN_BATTLE)
 	elseif current_state == IN_BATTLE then
 		if not in_battle_recorded then 
 			counter_in_battle = counter_in_battle + 1
