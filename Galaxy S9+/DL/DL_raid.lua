@@ -1,4 +1,5 @@
-local UNKNOWN, READY, IN_BATTLE, BATTLE_START, END, READY_SCREEN = "Unknown", "Ready", "Battle", "BattleStart", "End", "CommonScreen"
+local UNKNOWN, READY, END, READY_SCREEN = "Unknown", "Ready", "End", "CommonScreen"
+local IN_BATTLE, BATTLE_START, LOADING = "Battle", "BattleStart", "loading"
 local ROOM_SELECT, FINDING_ROOM, INSUFFICIENT_WINGS, DIFFICULTY = "RoomSelect", "FindRoom", "WingsInsuf", "Difficulty"
 
 Settings:setCompareDimension(true, 1440)
@@ -37,6 +38,18 @@ _LocationDifficultyTop = Location(736, 1008)
 _PathDifficultyCheckItem = _PathParent .. "diff.png"
 _RegionDifficultyCheckItem = Region(40, 600, 335, 660)
 
+_PathLoading = _PathParent .. "loading.png"
+_RegionLoading = Region(0, 258, 73, 331)
+
+_PathRetryTxt = _PathParent .. "retry.png"
+_RegionServerError = Region(628, 1782, 691, 1842)
+_RegionServerErrorRetry = Region(927, 1788, 1141, 1840)
+_LocationServerErrorClose = Location(709, 1811)
+_LocationServerErrorRetry = Location(1035, 1813)
+
+_PathContinueTxt = _PathParent .. "continue.png"
+_RegionContinueTxt = Region(90, 1689, 416, 327)
+
 _PathHostTxt = _PathParent .. "host.png"
 _RegionHostText = Region(275, 1365, 460, 1435)
 
@@ -53,7 +66,7 @@ _LocationSkill1 = Location(523, _SkillY)
 _LocationSkill2 = Location(795, _SkillY)
 _LocationSkill3 = Location(1084, _SkillY)
 _LocationDragon = Location(202, 2229)
-_LocationCommonClickBattle = Location(714, 1491)
+_LocationCommonClickBattle = Location(495, 1785)
 
 _SkillIntervalSecond = 1.5
 
@@ -86,18 +99,18 @@ file_stream:write(os.date("Starts at %c\n"))
 
 -- Checks
 function _check_set_state_wait_time(_region, _path, _new_state, _wait_time)
-	return _check_set_state_true_actions(_region, _path, _new_state, function() end, _wait_time)
+	return check_set_state_true_actions(_region, _path, _new_state, function() end, _wait_time)
 end
 
 function _check_set_state(_region, _path, _new_state)
-	return _check_set_state_true_actions(_region, _path, _new_state, function() end, 0.1)
+	return check_set_state_true_actions(_region, _path, _new_state, function() end, 0.05)
 end
 
-function _check_set_state_true_actions(_region, _path, _new_state, _true_func)
-	return _check_set_state_true_actions_wait_time(_region, _path, _new_state, _true_func, 0.1)
+function check_set_state_true_actions(_region, _path, _new_state, _true_func)
+	return check_set_state_true_actions_wait_time(_region, _path, _new_state, _true_func, 0.05)
 end
 
-function _check_set_state_true_actions_wait_time(_region, _path, _new_state, _true_func, _wait_time)
+function check_set_state_true_actions_wait_time(_region, _path, _new_state, _true_func, _wait_time)
 	found = _region:exists(_path, _wait_time)
 	
 	if found then
@@ -121,7 +134,7 @@ function check_in_room()
 		
 		last_ready_check = nil
 	else
-		_check_set_state_true_actions(_RegionReadyText, _PathReadyText, READY, function()
+		check_set_state_true_actions(_RegionReadyText, _PathReadyText, READY, function()
 			update_state(READY)
 			click(_LocationReady)
 			
@@ -136,7 +149,7 @@ function check_in_battle_begin()
 end
 
 function check_in_battle()
-	return _check_set_state_true_actions(_RegionMenu, _PathMenu, IN_BATTLE, use_skills)
+	return check_set_state_true_actions(_RegionMenu, _PathMenu, IN_BATTLE, use_skills)
 end
 
 function check_end_game()
@@ -152,7 +165,7 @@ function check_difficulty_screen()
 end
 
 function check_host_left()
-	return _check_set_state_true_actions(_RegionHostText, _PathHostTxt, READY_SCREEN, function() click(_LocationCloseMiddleDialog) end)
+	return check_set_state_true_actions(_RegionHostText, _PathHostTxt, READY_SCREEN, function() click(_LocationCloseMiddleDialog) end)
 end
 
 function check_room_select()
@@ -161,6 +174,14 @@ end
 
 function check_room_finding()
 	return _check_set_state(_RegionRoomFindingTxt, _PathRoomFindingTxt, FINDING_ROOM)
+end
+
+function check_dead()
+	return _check_set_state(_RegionContinueTxt, _PathContinueTxt, current_state)
+end
+
+function check_loading()
+	return _check_set_state(_RegionLoading, _PathLoading, LOADING)
 end
 
 function check_insufficient_wings()
@@ -205,8 +226,17 @@ function clicks_insufficient_wings()
 	wait(_ClickCooldownSeconds)
 end
 
+function handle_connection_errors()
+	check_set_state_true_actions(_RegionServerError, _PathCloseTxt, current_state, function()
+		click(_LocationServerErrorClose)
+	end)
+	check_set_state_true_actions(_RegionServerErrorRetry, _PathRetryTxt, READY, function()
+		click(_LocationServerErrorRetry)
+	end)
+end
+
 function battle_begin_actions()
-	for i = 1, 12 do
+	for i = 1, 10 do
 		swipe(_LocationBattle1, _LocationBattle2)
 		wait(0.5)
 	end
@@ -296,11 +326,12 @@ while true do
 			update_state(UNKNOWN)
 		end
 		check_in_room() -- Prevent unready but set to ready
+		check_loading()
+	elseif current_state == LOADING then
+		handle_connection_errors()
 		check_in_battle_begin()
 	elseif current_state == BATTLE_START then
-		toast("BTS")
 		battle_begin_actions()
-		toast("BTE")
 		update_state(IN_BATTLE)
 	elseif current_state == IN_BATTLE then
 		if not in_battle_recorded then 
@@ -310,12 +341,19 @@ while true do
 		end
 	
 		click_common()
-		check_in_battle()
-		click_common()
-		
-		click_common()
-		check_end_game()
-		click_common()
+		if not check_dead() then
+			click_common()
+			check_in_battle()
+			click_common()
+			
+			click_common()
+			check_end_game()
+			click_common()
+			
+			click_common()
+			handle_connection_errors()
+			click_common()
+		end
 	elseif current_state == END then
 		in_battle_recorded = false
 		clicks_postgame_dialogs()
