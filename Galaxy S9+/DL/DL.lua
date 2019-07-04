@@ -1,6 +1,7 @@
-PHONE_RESOLUTION = "WQHD" -- WQHD / FHD+
-
 -- States
+Settings:setCompareDimension(true, 1440)
+Settings:setScriptDimension(true, 1440)
+
 local UNKNOWN, READY, IN_BATTLE, END, READY_SCREEN = "Unknown", "Ready", "Battle", "End", "rdyscr"
 current_state = UNKNOWN
 
@@ -14,53 +15,33 @@ counter_ready = 0
 
 exec = true
 
-_PathParent = PHONE_RESOLUTION .. "/"
+_PathParent = "/"
 
 _PathMenu = _PathParent .. "menu.png"
 _PathReadyText = _PathParent .. "ready.png"
 _PathUnreadyText = _PathParent .. "unready.png"
-_PathDragonGage = _PathParent .. "gage.png"
 _PathEndGameCheckItem = _PathParent .. "next.png"
 _PathCommonScreenCheckItem = _PathParent .. "common.png"
 _PathHostTxt = _PathParent .. "host.png"
 
-if PHONE_RESOLUTION == "FHD+" then
-	_RegionMenu = Region(955, 125, 1065, 235)
-	_RegionReadyText = Region(820, 1760, 901, 1806)
-	_RegionGage = Region(20, 1620, 75, 1720)
-	_RegionEndGameCheckItem = Region(830, 1940, 940, 2005)
-	
-	_SkillY = 1987
-	_LocationSkill1 = Location(387, _SkillY)
-	_LocationSkill2 = Location(600, _SkillY)
-	_LocationSkill3 = Location(817, _SkillY)
+_RegionMenu = Region(1291, 114, 1393, 212)
+_RegionReadyText = Region(1089, 2422, 1200, 2496)
+_RegionHostText = Region(275, 1365, 460, 1435)
+_RegionEndGameCheckItem = Region(1012, 2629, 1148, 2703)
+_RegionCommonScreenCheckItem = Region(205, 125, 270, 170)
 
-	_LocationReady = Location(830, 1739)
-	_LocationDragon = Location(158, 1640)
-	_LocationCommonClick = Location(887, 1344)
-elseif PHONE_RESOLUTION == "WQHD" then
-	_RegionMenu = Region(1291, 114, 1393, 212)
-	_RegionReadyText = Region(1089, 2422, 1200, 2496)
-	_RegionHostText = Region(275, 1365, 460, 1435)
-	_RegionGage = Region(36, 2220, 88, 2335)
-	_RegionEndGameCheckItem = Region(1012, 2629, 1148, 2703)
-	_RegionCommonScreenCheckItem = Region(205, 125, 270, 170)
-	
-	_SkillY = 2624
-	_LocationSkill1 = Location(523, _SkillY)
-	_LocationSkill2 = Location(795, _SkillY)
-	_LocationSkill3 = Location(1084, _SkillY)
+_SkillY = 2624
+_LocationSkill1 = Location(523, _SkillY)
+_LocationSkill2 = Location(795, _SkillY)
+_LocationSkill3 = Location(1084, _SkillY)
 
-	_LocationReady = Location(1084, 2413)
-	_LocationDragon = Location(202, 2229)
-	_LocationCommonClick = Location(1199, 1801)
-	_LocationCommonClickBattle = Location(714, 1742)
-	_LocationProceedNext = Location(1097, 2665)
-	_LocationNoContinue = Location(638, 2288)
-	_LocationCloseMiddleDialog = Location(720, 1813)
-else
-	scriptExit(string.format("Unknown Phone Resolution. Should be WQHD or FHD+. (%s)", PHONE_RESOLUTION))
-end
+_LocationReady = Location(1084, 2413)
+_LocationDragon = Location(202, 2229)
+_LocationCommonClick = Location(1199, 1801)
+_LocationCommonClickBattle = Location(714, 1742)
+_LocationProceedNext = Location(1097, 2665)
+_LocationNoContinue = Location(638, 2288)
+_LocationCloseMiddleDialog = Location(720, 1813)
 
 _SkillIntervalSecond = 1.5
 
@@ -192,17 +173,6 @@ function click_common()
 end
 
 -- NOT USING --
-function check_dragon()
-	result = regionFindAllNoFindException(_RegionGage, _PathDragonGage)
-	
-	for i, m in ipairs(result) do
-		click(_LocationDragon)
-		
-		current_state = IN_BATTLE
-		return true
-	end
-	return false
-end
 	
 function generate_toast()
 	setStopMessage(string.format("Elapsed Time: %.3f s", begin_t:check()))

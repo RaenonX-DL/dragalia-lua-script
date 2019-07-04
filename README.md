@@ -1,48 +1,20 @@
-# Guides
+# DL
+This script only executes from **click to start selecting the room** to **dismissed all dialogs and back to the quest screen**.
 
-- Sikuli 2014 `Region` [Link](https://sikulix-2014.readthedocs.io/en/latest/region.html#Region)
-
-----
-# DL main
-
-```
-DL_raid is the script for Raid Events ONLY.
-```
-
-### Currently Tested Operatable Environment
-- Samsung Galaxy S9+ on WQHD
-
-### Current Available Functions
-- Auto terminate on back to common screen (`DL` only)
-- Automated all normal playing stepflow (`DL_raid` only)
-    - Auto ready
-    - Auto S1, S2, S3
-    - Auto dragonize + ultimate
-- Avoid retire when dead
-
-### Notes
-- Dimension auto detection not tested
-- 
-----
-# DL Raid Scout
-### Currently Tested Operatable Environment
-- Samsung Galaxy S9+ on WQHD
-- Samsung Galaxy S9+ on FHD+
-
-### Current Available Resolutions
-- FHD+ - 1080 x 2220
-- WQHD - 1440 x 2960
-
-### Current Available Functions
-- Auto confirm raid box reset **(Available on WQHD only)**
-- Auto scout
+### Currently Developed on
+- Samsung Galaxy S9+ on WQHD (in `Galaxy S9+/DL`)
 ----
 # DL Continue
-### Currently Tested Operatable Environment
-- Samsung Galaxy S9+ on WQHD
+This is an extended version of [DL](#DL). The script will automatically continue when the quest ends, and only can be terminated by the user.
 
-### Current Available Resolutions
-- WQHD - 1440 x 2960
+### Currently Developed on
+- Samsung Galaxy S9+ on WQHD (in `Galaxy S9+/DLContinue`)
+----
+# DL Raid
+This is specifically designed for infinitely farming raid event.
 
-### Current Available Functions
-- Uses the structure same as `DL Raid Scout` but adapt it to most of the daily event. (Dragon's Trials, Imperial Onslaughts)
+#### Currently Supporting Event:
+> Fortune from Afar 
+
+### Currently Developed on
+- ROG Phone (in `Galaxy S9+/DLRaid`)
