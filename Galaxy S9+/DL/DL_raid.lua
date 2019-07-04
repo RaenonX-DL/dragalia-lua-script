@@ -48,7 +48,7 @@ _LocationRecoverButtonAndClose = Location(816, 1851)
 _LocationBattle1 = Location(720, 2450)
 _LocationBattle2 = Location(720, 1200)
 
-_SkillY = 2624
+_SkillY = 2550
 _LocationSkill1 = Location(523, _SkillY)
 _LocationSkill2 = Location(795, _SkillY)
 _LocationSkill3 = Location(1084, _SkillY)

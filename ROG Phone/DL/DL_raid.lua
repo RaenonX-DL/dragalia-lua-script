@@ -24,7 +24,7 @@ _RegionRoomFindingTxt = Region(540, 1062, 620, 1106)
 _RegionInsufficientWings = Region(315, 1370, 400, 1414)
 _RegionDifficultyCheckItem = Region(29, 423, 248, 470)
 
-_SkillY = 1906
+_SkillY = 1848
 _LocationSkill1 = Location(384, _SkillY)
 _LocationSkill2 = Location(603, _SkillY)
 _LocationSkill3 = Location(816, _SkillY)
