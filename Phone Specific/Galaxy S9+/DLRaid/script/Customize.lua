@@ -36,7 +36,7 @@ m.LocationSkill1 = Location(523, SkillY)
 m.LocationSkill2 = Location(795, SkillY)
 m.LocationSkill3 = Location(1084, SkillY)
 m.LocationDragon = Location(202, 2229)
-m.LocationCommonClickBattle = Location(495, 1785)
+m.LocationCommonClickBattle = Location(474, 1754)
 
 m.PathEndGameCheckItem = PathParent .. "next.png"
 m.RegionEndGameCheckItem = Region(1012, 2629, 136, 74)
