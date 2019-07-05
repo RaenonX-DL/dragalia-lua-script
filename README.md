@@ -95,7 +95,7 @@
 #9|主功能|<img src="https://i.imgur.com/uJrSqCA.jpg" width="50"/>|獲得EX，點選任務目錄的RAID戰後的畫面
 #10|主功能|<img src="https://i.imgur.com/hVbDrJz.jpg" width="50"/>|未獲得EX，點選任務目錄的RAID戰後的畫面
 #11|主功能|<img src="https://i.imgur.com/0IXVxBh.jpg" width="50"/>|開戰前的讀取中畫面
-#12|斷線處理|<img src="https://i.imgur.com/0IXVxBh.jpg" width="50"/>|無法重試的連線失敗畫面
+#12|斷線處理|<img src="https://i.imgur.com/ZLhFldZ.jpg" width="50"/>|無法重試的連線失敗畫面
 #13|斷線處理|<img src="https://i.imgur.com/jwjxXTv.jpg" width="50"/>|可重試的連線失敗畫面
 #14|自動補毛|<img src="https://i.imgur.com/FGYcjcR.jpg" width="50"/>|開始關卡前，遊戲顯示毛不足，必須使用道具或鑽石補的畫面
 #15|自動補毛|<img src="https://i.imgur.com/TMQGWMr.jpg" width="50"/>|補毛確認對話框(有確認補毛、取消兩個按鈕)
@@ -108,7 +108,7 @@
 #22|主功能|<img src="https://i.imgur.com/sq5Xsvg.jpg" width="50"/>|任務(龍之試煉、迎擊...等)選擇頁面
 
 圖片提取要點
-- [圖12](https://i.imgur.com/0IXVxBh.jpg): 比較難抓到，通常是腳本卡住以後截圖才有機會獲得。開戰前讀取中出現/進入隨機房前出現的截圖都可以做為圖12。
+- [圖12](https://i.imgur.com/ZLhFldZ.jpg): 比較難抓到，通常是腳本卡住以後截圖才有機會獲得。開戰前讀取中出現/進入隨機房前出現的截圖都可以做為[圖12](https://i.imgur.com/ZLhFldZ.jpg)。
 - [圖13](https://i.imgur.com/jwjxXTv.jpg): 連線開戰前將網路切斷即可。
 - [圖14](https://i.imgur.com/FGYcjcR.jpg): 必須顯示"羽毛不足"，否則圖片無法使用ˇ。
 - [圖17](https://i.imgur.com/FecDTDd.jpg): 找一位朋友協助開房，進房後請朋友關房。
