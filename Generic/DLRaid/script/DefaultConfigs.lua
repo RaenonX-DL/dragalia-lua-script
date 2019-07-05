@@ -7,7 +7,7 @@ m.DimensionWidth = 1440
 
 -- Script Executions
 
-m.ClickCooldownSeconds = 0.25
+m.ClickCooldownSeconds = 0.1
 m.ScriptDefaultExistWaitMs = 0.05
 
 -- Action Specific Configurations
@@ -15,10 +15,11 @@ m.ScriptDefaultExistWaitMs = 0.05
 m.DifficultyChecks = 3
 m.DifficultyCheckWaitSeconds = 0.7
 m.HostLeftWaitSeconds = 5
+m.MaxLoadingStuckSeconds = 30
 m.SkillIntervalSecond = 1.5
 m.PostgameClickCheckWaitSeconds = 0.7
+
 m.MaxStateChecksOnUnknown = 60
-m.MaxLoadingStuckSeconds = 30
 
 -- Toast
 

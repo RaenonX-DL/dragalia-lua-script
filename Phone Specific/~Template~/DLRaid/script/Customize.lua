@@ -7,16 +7,66 @@ PathParent = "/"
 -- 抓取時，必須能一次點到圖1的再檢索、圖3的隨機入室按鈕，但是不會點到圖2的取消按鈕。
 m.LocationCommonClick = Location(0, 0)
 
--- 判斷戰鬥中時用的圖和圖片偵測區域
--- 參見image/menu.png的範例圖檔。該圖位於圖4右上角。
-m.PathMenu = PathParent .. "menu.png"
-m.RegionMenu = Region(0, 0, 0, 0)
+-- 判斷是否在非戰鬥相關螢幕的圖和圖片偵測區域
+-- 參見image/common.png的範例圖檔。該圖位於任何沒有被對話框覆蓋，並且不在任務中的圖片(例: 圖5)的左上角。
+-- 範例圖所抓的是體力的日文的前兩個字，部分手機因不明原因無法判斷，此時可以改成判斷右方禮物箱圖案(請記得不要拍到會因為有無待領物品而被影響的區域)。
+m.PathCommonScreenCheckItem = PathParent .. "common.png"
+m.RegionCommonScreenCheckItem = Region(0, 0, 0, 0)
+
+-- 點擊任務目錄中，RAID戰的座標
+-- 從圖8中抓取Raid戰的位置。
+-- 抓取時，座標建議不要和接下來會出現的圖9、圖10中的任何按鈕重疊，以避免判斷錯誤時誤按造成腳本失控。在支援的手機上實作時所點擊的點在最左邊，幾乎螢幕邊緣。
+m.LocationQuestTop = Location(0, 0)
+
+-- 難易度選擇 字樣的圖和圖片偵測區域 / 偵測到 難易度選擇 字樣後所要點擊的座標
+-- 參見image/diff.png的範例圖檔。該圖/字樣位於圖9，圖10的左上方。
+-- 點擊座標: 可以同時於圖9中可以點到EX、圖10中點到上級的座標。可以迴避與接下來的圖3的任何按鈕重合的點更好，雖然在支援的手機上實作時沒有做這個也沒有發生過問題。
+m.LocationDifficultyTop = Location(0, 0)
+m.PathDifficultyCheckItem = PathParent .. "diff.png"
+m.RegionDifficultyCheckItem = Region(0, 0, 0, 0)
+
+-- 關閉字樣圖 / 判斷是否準備要找房的圖和圖片偵測區域
+-- 參見image/close.png的範例圖檔。因為這張圖還有在其他地方會使用，請截取任何出現關閉按鈕時一定會有的東西，建議擷取部分或全部關閉字樣最安全。
+-- 此圖可以在圖3的隨機找房的按鈕下方找到。
+m.PathCloseTxt = PathParent .. "close.png"
+m.RegionRoomSelectCloseTxt = Region(0, 0, 0, 0)
+
+-- 點選隨機找房按鈕的座標
+-- 從圖3抓取，或者可以跟*非戰鬥狀態中常時點擊座標(LocationCommonClick)*相同。抓取座標所需條件和前述座標相同。
+m.LocationRandomRoom = Location(0, 0)
+
+-- 房間檢索中的圖和圖片偵測區域
+-- 參見image/finding.png的範例圖檔。該圖位於圖2偏中間的"檢索"字樣。
+m.PathRoomFindingTxt = PathParent .. "finding.png"
+m.RegionRoomFindingTxt = Region(0, 0, 0, 0)
 
 -- 判斷進房後準備與否字樣的圖和圖片偵測區域/按下準備的位置
 -- 參見image/ready.png的範例圖檔。該圖位於圖5右下角準備按鈕上。
 m.PathReadyText = PathParent .. "ready.png"
 m.RegionReadyText = Region(0, 0, 0, 0)
 m.LocationReady = Location(0, 0)
+
+-- 讀取中 字樣的圖和圖片偵測區域
+-- 參見image/loading.png的範例圖檔。該圖位於圖11的右下角。
+m.PathLoading = PathParent .. "loading.png"
+m.RegionLoading = Region(0, 0, 0, 0)
+
+-- 判斷戰鬥中時用的圖和圖片偵測區域
+-- 參見image/menu.png的範例圖檔。該圖位於圖4右上角。
+m.PathMenu = PathParent .. "menu.png"
+m.RegionMenu = Region(0, 0, 0, 0)
+
+-- 技能Y座標(SkillY) - 圖4中，點擊技能1、2、3時的Y座標
+-- 技能1、2、3座標(LocationSkill1、LocationSkill2、LocationSkill3) - 圖4中，點擊對應技能時的X座標。
+-- 龍化座標(LocationDragon) - 圖4中，點擊後會使角色龍化的座標。
+-- 普攻座標(LocationCommonClickBattle) - 圖4中任一點可以使角色普攻一下的座標。為了避免遊戲對話框誤判，建議偏左(大部分對話框"是"的選項都在右側)
+-- !!! : 請在繪圖軟體上重合圖4和圖6，以檢查技能3的座標(LocationSkill3)不會按到圖6中的*繼續*，否則有可能造成腳本誤判。
+SkillY = 0
+m.LocationSkill1 = Location(0, SkillY)
+m.LocationSkill2 = Location(0, SkillY)
+m.LocationSkill3 = Location(0, SkillY)
+m.LocationDragon = Location(0, 0)
+m.LocationCommonClickBattle = Location(0, 0)
 
 -- 戰鬥結束檢查用圖及結算點擊座標
 -- 參見image/next.png的範例圖檔。該圖位於圖6右下角*繼續*按鈕上。
@@ -29,43 +79,7 @@ m.LocationProceedNext = Location(0, 0)
 m.LocationNoContinue = Location(0, 0)
 m.LocationCloseMiddleDialog = Location(0, 0)
 
--- 判斷是否在非戰鬥相關螢幕的圖和圖片偵測區域
--- 參見image/common.png的範例圖檔。該圖位於任何沒有被對話框覆蓋，並且不在任務中的圖片(例: 圖5)的左上角。
--- 範例圖所抓的是體力的日文的前兩個字，部分手機因不明原因無法判斷，此時可以改成判斷右方禮物箱圖案(請記得不要拍到會因為有無待領物品而被影響的區域)。。
-m.PathCommonScreenCheckItem = PathParent .. "common.png"
-m.RegionCommonScreenCheckItem = Region(0, 0, 0, 0)
 
--- 關閉字樣圖 / 判斷是否準備要找房的圖和圖片偵測區域
--- 參見image/close.png的範例圖檔。因為這張圖還有在其他地方會使用，請截取任何出現關閉按鈕時一定會有的東西，建議擷取部分或全部關閉字樣最安全。
--- 此圖可以在圖3的隨機找房的按鈕下方找到。
-m.PathCloseTxt = PathParent .. "close.png"
-m.RegionRoomSelectCloseTxt = Region(0, 0, 0, 0)
-
--- 點擊任務目錄中，RAID戰的座標
--- 從圖8中抓取Raid戰的位置。
--- 抓取時，座標建議不要和接下來會出現的圖9、圖10中的任何按鈕重疊，以避免判斷錯誤時誤按造成腳本失控。在支援的手機上實作時所點擊的點在最左邊，幾乎螢幕邊緣。
-m.LocationQuestTop = Location(0, 0)
-
--- 點選隨機找房按鈕的座標
--- 從圖3抓取，或者可以跟*非戰鬥狀態中常時點擊座標(LocationCommonClick)*相同。抓取座標所需條件和前述座標相同。
-m.LocationRandomRoom = Location(0, 0)
-
--- 房間檢索中的圖和圖片偵測區域
--- 參見image/finding.png的範例圖檔。該圖位於圖2偏中間的"檢索"字樣。
-m.PathRoomFindingTxt = PathParent .. "finding.png"
-m.RegionRoomFindingTxt = Region(0, 0, 0, 0)
-
--- 難易度選擇 字樣的圖和圖片偵測區域 / 偵測到 難易度選擇 字樣後所要點擊的座標
--- 參見image/diff.png的範例圖檔。該圖/字樣位於圖9，圖10的左上方。
--- 點擊座標: 可以同時於圖9中可以點到EX、圖10中點到上級的座標。可以迴避與接下來的圖3的任何按鈕重合的點更好，雖然在支援的手機上實作時沒有做這個也沒有發生過問題。
-m.LocationDifficultyTop = Location(0, 0)
-m.PathDifficultyCheckItem = PathParent .. "diff.png"
-m.RegionDifficultyCheckItem = Region(0, 0, 0, 0)
-
--- 讀取中 字樣的圖和圖片偵測區域
--- 參見image/loading.png的範例圖檔。該圖位於圖11的右下角。
-m.PathLoading = PathParent .. "loading.png"
-m.RegionLoading = Region(0, 0, 0, 0)
 
 -- 斷線處理所需判斷的圖和圖片偵測區域
 -- **ServerErrorRetry (可重試連接錯誤):
@@ -105,17 +119,7 @@ m.RegionHostText = Region(0, 0, 0, 0)
 m.PathContinueTxt = PathParent .. "continue.png"
 m.RegionContinueTxt = Region(0, 0, 0, 0)
 
--- 技能Y座標(SkillY) - 圖4中，點擊技能1、2、3時的Y座標
--- 技能1、2、3座標(LocationSkill1、LocationSkill2、LocationSkill3) - 圖4中，點擊對應技能時的X座標。
--- 龍化座標(LocationDragon) - 圖4中，點擊後會使角色龍化的座標。
--- 普攻座標(LocationCommonClickBattle) - 圖4中任一點可以使角色普攻一下的座標。為了避免遊戲對話框誤判，建議偏左(大部分對話框"是"的選項都在右側)
--- !!! : 請在繪圖軟體上重合圖4和圖6，以檢查技能3的座標(LocationSkill3)不會按到圖6中的*繼續*，否則有可能造成腳本誤判。
-SkillY = 0
-m.LocationSkill1 = Location(0, SkillY)
-m.LocationSkill2 = Location(0, SkillY)
-m.LocationSkill3 = Location(0, SkillY)
-m.LocationDragon = Location(0, 0)
-m.LocationCommonClickBattle = Location(0, 0)
+
 
 -- 戰鬥前置動作座標
 -- 動作大綱:

@@ -34,12 +34,12 @@
 
 ### 自訂指引
 事前準備:
-- **可以讓你做下列事情的繪圖軟體。**我用的是[Paint.NET](https://www.getpaint.net/))
+- **可以讓你做下列事情的繪圖軟體。** 我用的是[Paint.NET](https://www.getpaint.net/)。
     - 查詢目前游標座標
     - 擷取區域圖塊並複製貼上生成新圖片
     - 查詢選取區域的左上角座標以及獲得該區域的寬高
     - 重疊兩張圖片，兩張圖片都可以同時看見
-- **文字編輯軟體。**我用的是[NotePad++](https://notepad-plus-plus.org/)，因為這款軟體可以Highlight部分lua的關鍵字，而且打字排版相對快，又不需要像一般IDE一樣有繁重的前置讀取。
+- **文字編輯軟體。** 我用的是[NotePad++](https://notepad-plus-plus.org/)，因為這款軟體可以Highlight部分lua的關鍵字，而且打字排版相對快，又不需要像一般IDE一樣有繁重的前置讀取。
 - **座標輸入用截圖。**
     - 必須 - 任務循環輪轉必要，可簡單取得
         - [圖1](https://i.imgur.com/N0ZkK6p.jpg) - 找不到房間時彈出再檢索對話框。

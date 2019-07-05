@@ -5,11 +5,27 @@ Customize = dofile(scriptPath() .. "script/Customize.lua")
 States = dofile(scriptPath() .. "script/State.lua")
 
 local m = {}
+
+local function check_difficulty_screen()
+	return CheckBase.check_set_state(Customize.RegionDifficultyCheckItem, Customize.PathDifficultyCheckItem, States.DIFFICULTY)
+end
+
+local function check_room_select()
+	return CheckBase.check_set_state(Customize.RegionRoomSelectCloseTxt, Customize.PathCloseTxt, States.ROOM_SELECT)
+end
+
+local function check_room_finding()
+	return CheckBase.check_set_state(Customize.RegionRoomFindingTxt, Customize.PathRoomFindingTxt, States.FINDING_ROOM)
+end
 local function check_in_room()
 	return CheckBase.check_set_state_true_actions(Customize.RegionReadyText, Customize.PathReadyText, States.READY, function()
 		States.update_state(States.READY)
 		click(Customize.LocationReady)
 	end)
+end
+
+local function check_loading()
+	return CheckBase.check_set_state(Customize.RegionLoading, Customize.PathLoading, States.LOADING)
 end
 local function check_battle_begin()
 	return CheckBase.check_set_state(Customize.RegionMenu, Customize.PathMenu, States.BATTLE_START)
@@ -23,10 +39,14 @@ end
 local function check_post_game()
 	return CheckBase.check_set_state(Customize.RegionCommonScreenCheckItem, Customize.PathCommonScreenCheckItem, States.READY_SCREEN)
 end
-local function check_difficulty_screen()
-	return CheckBase.check_set_state(Customize.RegionDifficultyCheckItem, Customize.PathDifficultyCheckItem, States.DIFFICULTY)
+
+
+
+local function check_insufficient_wings()
+	return CheckBase.check_set_state(Customize.RegionInsufficientWings, Customize.PathInsufficientTxt, States.INSUFFICIENT_WINGS)
 end
-local function check_host_left()
+
+local function check_host_left()
 	return CheckBase.check_set_state_true_actions(
 		Customize.RegionHostText, 
 		Customize.PathHostTxt, 
@@ -34,21 +54,11 @@ end
 		function() click(Customize.LocationCloseMiddleDialog) end
 	)
 end
-local function check_room_select()
-	return CheckBase.check_set_state(Customize.RegionRoomSelectCloseTxt, Customize.PathCloseTxt, States.ROOM_SELECT)
-end
-local function check_room_finding()
-	return CheckBase.check_set_state(Customize.RegionRoomFindingTxt, Customize.PathRoomFindingTxt, States.FINDING_ROOM)
-end
 local function check_dead()
 	return CheckBase.check_set_state(Customize.RegionContinueTxt, Customize.PathContinueTxt, States.current_state)
 end
-local function check_loading()
-	return CheckBase.check_set_state(Customize.RegionLoading, Customize.PathLoading, States.LOADING)
-end
-local function check_insufficient_wings()
-	return CheckBase.check_set_state(Customize.RegionInsufficientWings, Customize.PathInsufficientTxt, States.INSUFFICIENT_WINGS)
-end
+
+
 
 local function check_current_state(in_between_action)
 	in_between_action()

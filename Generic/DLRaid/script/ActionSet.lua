@@ -24,6 +24,15 @@ local function click_common()
 	end
 end
 
+-- Click on Insufficient Wings
+
+local function clicks_insufficient_wings()
+	click(Customize.LocationDiamantiumsRecover)
+	wait(Configs.ClickCooldownSeconds)
+	click(Customize.LocationRecoverButtonAndClose)
+	wait(Configs.ClickCooldownSeconds)
+end
+
 -- Use Skills
 
 last_skill = Timer()
@@ -43,26 +52,6 @@ local function use_skills()
 	click_common()
 end
 
--- Click Postgame Dialogs
-
-local function clicks_postgame_dialogs()
-	doubleClick(Customize.LocationProceedNext)
-	wait(Configs.ClickCooldownSeconds)
-	doubleClick(Customize.LocationCloseMiddleDialog)
-	wait(Configs.ClickCooldownSeconds)
-	doubleClick(Customize.LocationNoContinue)
-	wait(Configs.ClickCooldownSeconds)
-end
-
--- Click on Insufficient Wings
-
-local function clicks_insufficient_wings()
-	click(Customize.LocationDiamantiumsRecover)
-	wait(Configs.ClickCooldownSeconds)
-	click(Customize.LocationRecoverButtonAndClose)
-	wait(Configs.ClickCooldownSeconds)
-end
-
 -- Handle Connection Errors
 
 local function handle_connection_errors(in_between_action)
@@ -75,6 +64,17 @@ local function handle_connection_errors(in_between_action)
 		click(Customize.LocationServerErrorRetry)
 	end)
 	in_between_action()
+end
+
+-- Click Postgame Dialogs
+
+local function clicks_postgame_dialogs()
+	doubleClick(Customize.LocationProceedNext)
+	wait(Configs.ClickCooldownSeconds)
+	doubleClick(Customize.LocationCloseMiddleDialog)
+	wait(Configs.ClickCooldownSeconds)
+	doubleClick(Customize.LocationNoContinue)
+	wait(Configs.ClickCooldownSeconds)
 end
 
 m.click_common = click_common
