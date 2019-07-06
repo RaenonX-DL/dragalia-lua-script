@@ -1,3 +1,6 @@
+Logger = dofile(scriptPath() .. "script/Logger.lua")
+Configs = dofile(scriptPath() .. "script/Configs.lua")
+
 local m = {}
 
 -- Definitions
@@ -23,6 +26,11 @@ local function update_state(new_state)
 	if m.current_state ~= new_state then
 		m.previous_state = m.current_state
 		m.current_state = new_state
+
+		if Configs.LogDebug then
+			Logger.screenshot_message_file_suffix(
+				string.format("State Changed from %s to %s", m.previous_state, m.current_state), m.current_state)
+		end
 	end
 end
 

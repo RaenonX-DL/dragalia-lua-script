@@ -29,10 +29,13 @@ while true do
 		Check.check_room_finding()
 		Check.check_in_room()
 		Check.check_insufficient_wings()
+		Check.check_loading()
 	elseif States.current_state == States.FINDING_ROOM then
 		Check.check_in_room()
 		click(Customize.LocationRandomRoom)
 		ActionSet.handle_connection_errors(ActionSet.click_common)
+		Check.check_loading()
+		Check.check_end_game()
 	elseif States.current_state == States.INSUFFICIENT_WINGS then
 		ActionSet.clicks_insufficient_wings()
 		Check.check_room_finding()
@@ -47,7 +50,7 @@ while true do
 		System.activate_loading_destucker()
 		ActionSet.handle_connection_errors(function() end)
 		
-		if Check.check_battle_begin() or System.deactivate_loading_destucker() then
+		if Check.check_battle_begin() or System.check_destucker_overtime() then
 			System.deactivate_loading_destucker()
 		end
 	elseif States.current_state == States.BATTLE_START then

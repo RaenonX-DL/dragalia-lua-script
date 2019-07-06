@@ -22,7 +22,7 @@ m.PathRoomFindingTxt = PathParent .. "finding.png"
 m.RegionRoomFindingTxt = Region(715, 1460, 115, 55)
 
 m.PathReadyText = PathParent .. "ready.png"
-m.RegionReadyText = Region(1089, 2422, 111, 74)
+m.RegionReadyText = Region(1089, 2422, 117, 80)
 m.LocationReady = Location(1084, 2413)
 
 m.PathLoading = PathParent .. "loading.png"
