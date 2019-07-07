@@ -16,7 +16,7 @@ local function check_host_left()
 	return CheckBase.check_set_state_true_actions(
 		Customize.RegionHostText,
 		Customize.PathHostTxt,
-		States.READY_SCREEN,
+		States.COMMON_SCREEN,
 		function() click(Customize.LocationCloseMiddleDialog) end
 	)
 end
@@ -73,7 +73,7 @@ local function check_end_game()
 end
 
 local function check_post_game()
-	return CheckBase.check_set_state(Customize.RegionCommonScreenCheckItem, Customize.PathCommonScreenCheckItem, States.READY_SCREEN)
+	return CheckBase.check_set_state(Customize.RegionCommonScreenCheckItem, Customize.PathCommonScreenCheckItem, States.COMMON_SCREEN)
 end
 
 

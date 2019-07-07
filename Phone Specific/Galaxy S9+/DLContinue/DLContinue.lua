@@ -187,7 +187,7 @@ function check_end_game()
 end
 
 function check_post_game()
-	return _check_set_state_wait_time(_RegionCommonScreenCheckItem, _PathCommonScreenCheckItem, READY_SCREEN, 0.75)
+	return _check_set_state_wait_time(_RegionCommonScreenCheckItem, _PathCommonScreenCheckItem, COMMON_SCREEN, 0.75)
 end
 
 function check_friend_select_screen()
@@ -195,7 +195,7 @@ function check_friend_select_screen()
 end
 
 function check_host_left()
-	return _check_set_state_true_actions(_RegionHostText, _PathHostTxt, READY_SCREEN, function() click(_LocationCloseMiddleDialog) end, 0.3)
+	return _check_set_state_true_actions(_RegionHostText, _PathHostTxt, COMMON_SCREEN, function() click(_LocationCloseMiddleDialog) end, 0.3)
 end
 
 function check_random_room()
@@ -257,7 +257,7 @@ while true do
 		clicks_postgame_dialogs()
 		wait(0.7)
 		check_post_game()
-	elseif current_state == READY_SCREEN then
+	elseif current_state == COMMON_SCREEN then
 		click3(_LocationQuestTop, 0.5)
 		for i = 1, 2 do 
 			wait(0.7)

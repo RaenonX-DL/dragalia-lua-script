@@ -13,7 +13,7 @@ Settings:setScriptDimension(true, Configs.DimensionWidth)
 ------- MAIN -------
 
 while true do
-	if States.current_state == READY_SCREEN then
+	if States.current_state == COMMON_SCREEN then
 		click(Customize.LocationQuestTop)
 		for i = 1, Configs.FriendSelectChecks do 
 			wait(Customize.FriendSelectWaitSeconds)

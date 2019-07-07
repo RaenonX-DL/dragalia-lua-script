@@ -12,7 +12,7 @@ Settings:setScriptDimension(true, Configs.DimensionWidth)
 
 ------- MAIN -------
 while true do
-	if States.current_state == States.READY_SCREEN then
+	if States.current_state == States.COMMON_SCREEN then
 		click(Customize.LocationQuestTop)
 		
 		for i = 1, Configs.DifficultyChecks do
@@ -62,14 +62,16 @@ while true do
 			ActionSet.click_common()
 			Check.check_in_battle()
 			ActionSet.click_common()
-			
+
 			ActionSet.click_common()
 			Check.check_end_game()
 			ActionSet.click_common()
-			
+
 			ActionSet.click_common()
 			ActionSet.handle_connection_errors(ActionSet.click_common)
 			ActionSet.click_common()
+		else
+			Check.check_post_game() -- Dead and time up so go backs to the COMMON_SCREEN
 		end
 	elseif States.current_state == States.END then
 		Counter.count_once()

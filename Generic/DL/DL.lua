@@ -32,7 +32,7 @@ while true do
 		ActionSet.clicks_postgame_dialogs()
 		wait(Configs.PostgameClickCheckWaitSeconds)
 		Check.check_post_game()
-	elseif States.current_state == States.READY_SCREEN then
+	elseif States.current_state == States.COMMON_SCREEN then
 		System.terminate("Successfully ended.")
 	else
 		Check.check_current_state(ActionSet.click_common)

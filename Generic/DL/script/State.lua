@@ -6,7 +6,7 @@ m.UNKNOWN = "Unknown"
 m.READY = "Ready"
 m.IN_BATTLE = "Battle"
 m.END = "End"
-m.READY_SCREEN = "CommonScreen"
+m.COMMON_SCREEN = "CommonScreen"
 
 ------------------------------------
 

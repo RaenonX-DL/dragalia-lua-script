@@ -3,7 +3,7 @@ local m = {}
 -- Definitions
 
 m.UNKNOWN = "Unknown"
-m.READY_SCREEN = "CommonScreen"
+m.COMMON_SCREEN = "CommonScreen"
 m.FRIEND_SELECT = "FriendSel"
 m.RANDOM_ROOM = "RandRoom"
 m.FINDING_ROOM = "FindRoom"
