@@ -59,7 +59,7 @@ m.RegionMenu = Region(0, 0, 0, 0)
 -- 技能Y座標(SkillY) - 圖4中，點擊技能1、2、3時的Y座標
 -- 技能1、2、3座標(LocationSkill1、LocationSkill2、LocationSkill3) - 圖4中，點擊對應技能時的X座標。
 -- 龍化座標(LocationDragon) - 圖4中，點擊後會使角色龍化的座標。
--- 普攻座標(LocationCommonClickBattle) - 圖4中任一點可以使角色普攻一下的座標。為了避免遊戲對話框誤判，建議偏左(大部分對話框"是"的選項都在右側)
+-- 普攻座標(LocationCommonClickBattle) - 圖4中任一點可以使角色普攻一下的座標。為了避免遊戲對話框誤判，建議偏左(大部分對話框"是"的選項都在右側)，最好跟圖7重合以後抓一個偏左，可以一次按下EX對話框取消 & 螢幕普攻的位置。
 -- !!! : 請在繪圖軟體上重合圖4和圖6，以檢查技能3的座標(LocationSkill3)不會按到圖6中的*繼續*，否則有可能造成腳本誤判。
 SkillY = 0
 m.LocationSkill1 = Location(0, SkillY)

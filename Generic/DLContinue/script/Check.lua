@@ -13,7 +13,8 @@ end
 local function check_room_finding()
 	return CheckBase.check_set_state(Customize.RegionRoomFindingTxt, Customize.PathRoomFindingTxt, States.FINDING_ROOM)
 end
-local function check_in_room()
+
+local function check_in_room()
 	return CheckBase.check_set_state_true_actions(Customize.RegionReadyText, Customize.PathReadyText, States.READY, function()
 		States.update_state(States.READY)
 		click(Customize.LocationReady)
@@ -23,17 +24,21 @@ end
 local function check_loading()
 	return CheckBase.check_set_state(Customize.RegionLoading, Customize.PathLoading, States.LOADING)
 end
-local function check_battle_begin()
+
+local function check_battle_begin()
 	return CheckBase.check_set_state(Customize.RegionMenu, Customize.PathMenu, States.BATTLE_START)
 end
-local function check_in_battle()
+
+local function check_in_battle()
 	return CheckBase.check_set_state_true_actions(Customize.RegionMenu, Customize.PathMenu, States.IN_BATTLE, ActionSet.use_skills)
 end
-local function check_end_game()
+
+local function check_end_game()
 	return CheckBase.check_set_state(Customize.RegionEndGameCheckItem, Customize.PathEndGameCheckItem, States.END)
 end
-local function check_post_game()
-	return CheckBase.check_set_state(Customize.RegionCommonScreenCheckItem, Customize.PathCommonScreenCheckItem, States.READY_SCREEN)
+
+local function check_post_game()
+	return CheckBase.check_set_state(Customize.RegionCommonScreenCheckItem, Customize.PathCommonScreenCheckItem, States.COMMON_SCREEN)
 end
 
 
@@ -46,7 +51,7 @@ local function check_host_left()
 	return CheckBase.check_set_state_true_actions(
 		Customize.RegionHostText, 
 		Customize.PathHostTxt, 
-		States.READY_SCREEN, 
+		States.COMMON_SCREEN,
 		function() click(Customize.LocationCloseMiddleDialog) end
 	)
 end

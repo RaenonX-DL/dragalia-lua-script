@@ -14,6 +14,7 @@ m.ScriptDefaultExistWaitMs = 0.05
 
 m.DifficultyChecks = 3
 m.DifficultyCheckWaitSeconds = 0.7
+m.ReadyValidityPeriodSeconds = 5
 m.HostLeftWaitSeconds = 5
 m.MaxLoadingStuckSeconds = 30
 m.SkillIntervalSecond = 1.5
