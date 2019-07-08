@@ -111,6 +111,7 @@
 #20|主功能|<img src="https://i.imgur.com/a74UnCW.jpg" width="50"/>|點選任務以後，預設單機遊玩時的好友選擇畫面
 #21|主功能|<img src="https://i.imgur.com/SRoxWjS.jpg" width="50"/>|點選任務並點選要多人遊玩以後，房間控制按鈕集中頁面
 #22|主功能|<img src="https://i.imgur.com/sq5Xsvg.jpg" width="50"/>|任務(龍之試煉、迎擊...等)選擇頁面
+#23|滅團處理|<img src="https://i.imgur.com/Z2ikp1W.jpg" width="50"/>|滅團後房主退房的畫面
 
 圖片提取要點
 - [圖12](https://i.imgur.com/ZLhFldZ.jpg): 比較難抓到，通常是腳本卡住以後截圖才有機會獲得。開戰前讀取中出現/進入隨機房前出現的截圖都可以做為[圖12](https://i.imgur.com/ZLhFldZ.jpg)。

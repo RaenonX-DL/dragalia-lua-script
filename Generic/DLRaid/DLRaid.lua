@@ -4,6 +4,7 @@ Configs = dofile(scriptPath() .. "script/Configs.lua")
 Check = dofile(scriptPath() .. "script/Check.lua")
 Counter = dofile(scriptPath() .. "script/RunsCounter.lua")
 Customize = dofile(scriptPath() .. "script/Customize.lua")
+Logger = dofile(scriptPath() .. "script/Logger.lua")
 CustomizeFunctions = dofile(scriptPath() .. "script/CustomizeFunctions.lua")
 ActionSet = dofile(scriptPath() .. "script/ActionSet.lua")
 
@@ -11,6 +12,8 @@ Settings:setCompareDimension(true, Configs.DimensionWidth)
 Settings:setScriptDimension(true, Configs.DimensionWidth)
 
 ------- MAIN -------
+Logger.write_header()
+
 while true do
 	if States.current_state == States.COMMON_SCREEN then
 		click(Customize.LocationQuestTop)

@@ -39,7 +39,7 @@ m.LocationDragon = Location(202, 2229)
 m.LocationCommonClickBattle = Location(474, 1754)
 
 m.PathEndGameCheckItem = PathParent .. "next.png"
-m.RegionEndGameCheckItem = Region(1012, 2629, 136, 74)
+m.RegionEndGameCheckItem = Region(1012, 2509, 133, 199)
 m.LocationProceedNext = Location(1097, 2665)
 m.LocationNoContinue = Location(1114, 2880)
 m.LocationCloseMiddleDialog = Location(720, 1813)

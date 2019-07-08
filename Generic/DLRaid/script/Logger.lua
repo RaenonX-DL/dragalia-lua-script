@@ -21,10 +21,13 @@ local function screenshot_message(message)
 	screenshot_message_file_suffix(message, "")
 end
 
-write_log("\n===============\n")
-write_log(os.date("Starts at %c\n"))
+local function write_header()
+	write_log("\n===============\n")
+	write_log(os.date("Starts at %c\n"))
+end
 
 m.write_log = write_log
+m.write_header = write_header
 m.screenshot_message = screenshot_message
 m.screenshot_message_file_suffix = screenshot_message_file_suffix
 
