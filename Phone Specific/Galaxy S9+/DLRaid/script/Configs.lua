@@ -1,5 +1,5 @@
 local m = dofile(scriptPath() .. "script/DefaultConfigs.lua")
 
-m.LogDebug = true
+m.LogDebug = false
 
 return m
