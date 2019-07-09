@@ -15,6 +15,7 @@ m.COMMON_SCREEN = "CommonScreen"
 m.LOADING = "Loading"
 m.BATTLE_START = "BattleStart"
 m.IN_BATTLE = "Battle"
+m.BATTLE_DEAD = "Dead"
 m.END = "End"
 
 ------------------------------------

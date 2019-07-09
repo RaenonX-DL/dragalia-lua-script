@@ -22,9 +22,8 @@ local function check_host_left()
 end
 
 local function check_dead()
-	return CheckBase.check_set_state(Customize.RegionContinueTxt, Customize.PathContinueTxt, States.current_state)
+	return CheckBase.check_set_state(Customize.RegionContinueTxt, Customize.PathContinueTxt, States.BATTLE_DEAD)
 end
-
 
 
 local function check_difficulty_screen()

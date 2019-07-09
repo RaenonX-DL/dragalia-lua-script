@@ -4,6 +4,7 @@ Configs = dofile(scriptPath() .. "script/Configs.lua")
 Check = dofile(scriptPath() .. "script/Check.lua")
 Counter = dofile(scriptPath() .. "script/RunsCounter.lua")
 Customize = dofile(scriptPath() .. "script/Customize.lua")
+Logger = dofile(scriptPath() .. "script/Logger.lua")
 CustomizeFunctions = dofile(scriptPath() .. "script/CustomizeFunctions.lua")
 ActionSet = dofile(scriptPath() .. "script/ActionSet.lua")
 
@@ -11,6 +12,8 @@ Settings:setCompareDimension(true, Configs.DimensionWidth)
 Settings:setScriptDimension(true, Configs.DimensionWidth)
 
 ------- MAIN -------
+Logger.write_header()
+
 while true do
 	if States.current_state == States.COMMON_SCREEN then
 		click(Customize.LocationQuestTop)
@@ -58,7 +61,9 @@ while true do
 		States.update_state(States.IN_BATTLE)
 	elseif States.current_state == States.IN_BATTLE then
 		ActionSet.click_common()
-		if not Check.check_dead() then
+		if Check.check_dead() then
+			States.update_state(States.BATTLE_DEAD)
+		else
 			ActionSet.click_common()
 			Check.check_in_battle()
 			ActionSet.click_common()
@@ -70,9 +75,11 @@ while true do
 			ActionSet.click_common()
 			ActionSet.handle_connection_errors(ActionSet.click_common)
 			ActionSet.click_common()
-		else
-			Check.check_post_game() -- Dead and time up so go backs to the COMMON_SCREEN
 		end
+	elseif States.current_state == States.BATTLE_DEAD then
+		Check.check_end_game()
+		Check.check_post_game()
+		Check.check_difficulty_screen()
 	elseif States.current_state == States.END then
 		Counter.count_once()
 		
