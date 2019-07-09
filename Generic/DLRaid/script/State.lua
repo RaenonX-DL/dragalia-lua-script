@@ -6,12 +6,12 @@ local m = {}
 -- Definitions
 
 m.UNKNOWN = "Unknown"
+m.COMMON_SCREEN = "CommonScreen"
 m.DIFFICULTY = "Difficulty"
 m.ROOM_SELECT = "RoomSelect"
 m.INSUFFICIENT_WINGS = "WingsInsuf"
 m.FINDING_ROOM = "FindRoom"
 m.READY = "Ready"
-m.COMMON_SCREEN = "CommonScreen"
 m.LOADING = "Loading"
 m.BATTLE_START = "BattleStart"
 m.IN_BATTLE = "Battle"

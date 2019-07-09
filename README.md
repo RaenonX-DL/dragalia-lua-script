@@ -89,6 +89,7 @@
 [DL Raid](#DL-Raid) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖8](https://i.imgur.com/Moczq9t.jpg)、[圖9](https://i.imgur.com/uJrSqCA.jpg)<br/>[圖10](https://i.imgur.com/hVbDrJz.jpg) | [圖11](https://i.imgur.com/0IXVxBh.jpg)、[圖12](https://i.imgur.com/ZLhFldZ.jpg)、[圖13](https://i.imgur.com/jwjxXTv.jpg) | [圖14](https://i.imgur.com/FGYcjcR.jpg)、[圖15](https://i.imgur.com/TMQGWMr.jpg)、[圖16](https://i.imgur.com/0aUihct.jpg) | [圖17](https://i.imgur.com/FecDTDd.jpg) | [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg)
 
 ### 圖片畫面對照表
+
 圖片編號 | 所屬功能 | 縮圖 | 主功能
 :---:|:---:|:---:|:---:
 #1|主功能|<img src="https://i.imgur.com/N0ZkK6p.jpg" width="50"/>|找不到房間時彈出再檢索對話框
@@ -145,14 +146,79 @@
 
 6. 執行 `Build/Template BuildDLRaid.bat`，輸入 **DL** 。
 
-7. 批次檔將會生成一個資料夾 **DLRaid-DL** ，將整個資料夾或裡面的檔案剪下/複製到手機上運行。
+7. 批次檔將會生成一個資料夾 **DLRaid-DL** ，將整個資料夾或裡面的檔案剪下/複製到手機上。
+
+8. [參照此頁面](#設定)設定腳本，然後至AnkuLua內點擊右上角的Settings，更改以下兩項設定。
+    - `Click down milliseconds`: 50
+    - `After click extra delay milliseconds`: 0
+
+9. 運行腳本
+
+#### 運行順序
+
+腳本運行順序如下。如果腳本沒有按照下列順序運行並運行時發生錯誤，則必須 [除錯](#除錯)。
+
+目前的運行狀態可在下方訊息中看到。
+> 如果沒有看到下方訊息出現，請至 [設定](#設定) 檢查下方訊息是否以啟用。(啟用下方訊息 - `ToastEnable` 必須為 `true`)
+
+##### 流程 (有按照順序排列)
+運行狀態|敘述
+:---:|:---:
+`CommonScreen`|非戰鬥(一般)畫面
+`Difficulty`|難易度選擇畫面
+`RoomSelect`|房間管理畫面
+`FindRoom`|房間尋找中
+`Ready`|準備畫面
+`Loading`|讀取畫面
+`BattleStart`|戰鬥初始動作執行中
+`Battle`|戰鬥中
+`End`|戰鬥結算
+
+##### 其他 (沒有按照順序排列)
+
+運行狀態|名稱|敘述
+:---:|:---:|:---:
+`Unknown`|不明|腳本起始，或是自行判斷已卡住時，會回到此狀態以重新偵測目前狀態。
+`WingsInsuf`|共鬥翼不足|共鬥之翼不足時，會進入此狀態。
+`Dead`|死亡|自己/己方完全滅團的狀態。
+
+#### 設定
+
+以下所有設定都可以在 `script/Configs.lua` 內覆寫。
+覆寫範例如下:
+
+```lua
+m.LogDebug = false
+```
+
+對照表
+
+設定|設定項目|預設|單位|敘述
+:---:|:---:|:---:|:---:|:---:
+`LogDebug`|日誌記錄除錯訊息|`false`|-|開啟這個時，會更詳細的紀錄腳本的運行日誌。
+`DimensionWidth`|螢幕寬度|(你的螢幕寬度)|畫素|腳本內部使用。
+`ClickCooldownSeconds`|點擊間隔|0.1|秒|每次點擊螢幕的間隔。
+`ScriptDefaultExistWaitMs`|圖片偵測間隔|0.05|秒|每次偵測圖片的間隔。
+`DifficultyChecks`|難易度檢查次數|3|-|重覆檢查是否在難易度畫面(圖9、圖10)的次數。
+`DifficultyCheckWaitSeconds`|難易度檢查間隔|0.7|秒|上述檢查的間隔。
+`ReadyValidityPeriodSeconds`|已準備有效時間|5|秒|按下已準備後，腳本就不會在這段時間內重覆檢查是否已準備。
+`HostLeftWaitSeconds`|房主退房延遲|5|秒|房主退房並確認對話框以後進行接下來的動作的等待秒數，避免游戲延遲導致誤按。
+`MaxLoadingStuckSeconds`|最大讀取中時間|30|秒|腳本處在 `@ Loading` 狀態的最大許可秒數。超過這個秒數以後，腳本就會認定已卡住，重新偵測目前狀態。
+`SkillIntervalSecond`|戰鬥中技能間隔|1.5|秒|戰鬥狀態(`@ Battle`)下，點擊技能的間隔。
+`PostgameClickCheckWaitSeconds`|結算點擊間隔|0.7|秒|結算狀態(`@ End`)下，點擊所有座標的間隔。
+`MaxStateChecksOnUnknown`|最大未知狀態時間|60|秒|腳本處在 `@ Unknown` 狀態的最大許可秒數。超過這個秒數以後，腳本就會自動終止。
+`ToastCooldownSeconds`|下方訊息顯示間隔|10|秒|下方訊息顯示的間隔。太常顯示可能導致腳本提早閃退。
+`ToastEnable`|啟用下方訊息|`true`|-|是否啟用顯示下方訊息的功能。
 
 #### 除錯
 
+- 除錯時，請注意下方訊息方塊。
+    - 預設每10秒出現一次，可以調整[設定](#設定)中的**下方訊息顯示間隔( `ToastEnable` )以查看目前的[運行狀態](#運行順序)。
 - 腳本執行時會有橘色框框，可以看看腳本有沒有找到對的區域用。
+- 腳本運行狀態順序[請參見此處](#運行順序)。
 
 編號 | 錯誤原因 | 除錯方式
 :---:|:---:|:---:
 1|點歪|檢查對應的點擊座標( `Location**` )是否正確。
 2|狀態(State，下方訊息的後半部)不隨畫面變化|檢查圖片搜索區域( `Region**` )是否正確。
-3|亂點|設定錯誤|若狀態有根據畫面變化則按照#1除錯，否則#2。
+3|亂點|設定錯誤。若狀態有根據畫面變化則按照#1除錯，否則#2。
