@@ -1,0 +1,24 @@
+-- Inherit Specific Common/Coordinates.lua
+
+m.PathLoading = PathParent .. "loading.png"
+m.RegionLoading = Region(1112, 2651, 227, 61)
+
+
+
+m.PathRetryTxt = PathParent .. "retry.png"
+m.PathCloseTxt = PathParent .. "close.png"
+m.RegionServerError = Region(628, 1782, 63, 60)
+m.RegionServerErrorRetry = Region(927, 1788, 214, 52)
+m.LocationServerErrorClose = Location(709, 1811)
+m.LocationServerErrorRetry = Location(1035, 1813)
+
+m.PathInsufficientTxt = PathParent .. "insufficient.png"
+m.RegionInsufficientWings = Region(410, 1850, 140, 90)
+
+m.LocationDiamantiumsRecover = Location(720, 995)
+
+m.LocationRecoverButtonAndClose = Location(816, 1851)
+
+
+m.PathRoomFindingTxt = PathParent .. "finding.png"
+m.RegionRoomFindingTxt = Region(710, 1450, 125, 70)

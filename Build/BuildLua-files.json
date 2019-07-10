@@ -1,0 +1,41 @@
+{
+  "DL": [
+    { "Type": "Specific", "Path": "script/Configs.lua" },
+    { "Type": "CommonGeneral", "Path": "States.lua" },
+    { "Type": "Specific", "Path": "script/Coordinates.lua" },
+    { "Type": "CommonGeneral", "Path": "System.lua" },
+    { "Type": "CommonGeneral", "Path": "ActionSet.lua" },
+    { "Type": "CommonGeneral", "Path": "CheckBase.lua" },
+    { "Type": "CommonGeneral", "Path": "Check.lua" },
+    { "Type": "General", "Path": "DL.lua" }
+  ],
+  "DLContinue": [
+    { "Type": "Specific", "Path": "script/Configs.lua" },
+    { "Type": "CommonGeneral", "Path": "States+Advanced.lua" },
+    { "Type": "General", "Path": "script/States.lua" },
+    { "Type": "Specific", "Path": "script/Coordinates.lua" },
+    { "Type": "CommonGeneral", "Path": "Logger.lua" },
+    { "Type": "CommonGeneral", "Path": "RunsCounter.lua" },
+    { "Type": "CommonGeneral", "Path": "System+Advanced.lua" },
+    { "Type": "CommonGeneral", "Path": "CheckBase.lua" },
+    { "Type": "CommonGeneral", "Path": "ActionSet+Advanced.lua" },
+    { "Type": "General", "Path": "script/Check.lua" },
+    { "Type": "General", "Path": "script/CustomActions.lua" },
+    { "Type": "General", "Path": "DLContinue.lua" }
+  ],
+  "DLRaid": [
+    { "Type": "Specific", "Path": "script/Configs.lua" },
+    { "Type": "CommonGeneral", "Path": "States+Advanced.lua" },
+    { "Type": "General", "Path": "script/States.lua" },
+    { "Type": "Specific", "Path": "script/Coordinates.lua" },
+    { "Type": "CommonGeneral", "Path": "Logger.lua" },
+    { "Type": "CommonGeneral", "Path": "RunsCounter.lua" },
+    { "Type": "CommonGeneral", "Path": "System+Advanced.lua" },
+    { "Type": "CommonGeneral", "Path": "CheckBase.lua" },
+    { "Type": "CommonGeneral", "Path": "ActionSet+Advanced.lua" },
+    { "Type": "General", "Path": "script/Check.lua" },
+    { "Type": "General", "Path": "script/CustomActions.lua" },
+    { "Type": "CommonGeneral", "Path": "Logger.lua" },
+    { "Type": "General", "Path": "DLRaid.lua" }
+  ]
+}
