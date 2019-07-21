@@ -22,7 +22,7 @@ while true do
 	elseif States.current_state == States.FINDING_ROOM then
 		Check.check_in_room()
 		Check.check_in_battle()
-		Check.check_post_game()
+		Check.check_end_game()
 		click(Coordinates.LocationRandomRoom)
 		ActionSet.handle_connection_errors(ActionSet.click_common)
 	elseif States.current_state == States.INSUFFICIENT_WINGS then
