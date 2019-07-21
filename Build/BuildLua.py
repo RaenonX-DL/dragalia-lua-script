@@ -142,7 +142,7 @@ def write_script(script_file_path, module_name=None):
 
             module_path_str = script_file_path.split("dragalia-lua-script", 1)[1]
 
-            print(f"Writing Module - {module_name} at {module_path_str}")
+            print(f"Processing Module - {module_name} at {module_path_str}")
             # script_out.write(f"\n-- Module: {module_name} @ {module_path_str}\n")
 
             # Remap module

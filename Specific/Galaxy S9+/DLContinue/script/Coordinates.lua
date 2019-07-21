@@ -10,5 +10,5 @@ m.RegionFriendSelectItem = Region(285, 845, 115, 75)
 m.LocationMultiPlay = Location(1021, 874)
 
 m.PathToRandomRoomItem = PathParent .. "randroom.png"
-m.RegionToRandomRoom = Region(545, 1710, 350, 230)
+m.RegionToRandomRoom = Region(551, 1865, 345, 73)
 m.LocationRandomRoom = Location(178, 1903)
