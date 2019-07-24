@@ -1,12 +1,14 @@
 from __future__ import print_function
 
-import os, sys, re, datetime, json
+import os, sys, re, datetime, json, traceback
 import shutil
 
 
 def print_error_message(message):
     print("================== ERROR ==================")
     print(message)
+    print()
+    traceback.print_stack()
     input("Press `Enter` to exit.")
     sys.exit(1)
 
@@ -196,6 +198,8 @@ def print_info_message(message):
 
 if __name__ == '__main__':
     try:
+
+        raise TypeError()
         check_configs()
         build_script_file_catalog()
 
@@ -214,4 +218,4 @@ if __name__ == '__main__':
         print()
         input("Press `Enter` to exit.")
     except Exception as e:
-        print_error_message(f"{str(e)}\n\n{sys.exc_info()[0]}")
+        print_error_message(f"{str(e)}")
