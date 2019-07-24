@@ -3,10 +3,17 @@ from __future__ import print_function
 import os, sys, re, datetime, json
 import shutil
 
+
+def print_error_message(message):
+    print("================== ERROR ==================")
+    print(message)
+    input("Press `Enter` to exit.")
+    sys.exit(1)
+
+
 # Version Check
 if int(sys.version[0]) < 3:
-    print("The python version should be 3.")
-    sys.exit(1)
+    print_error_message("The python version should be 3.")
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 config_path = os.path.abspath(os.path.join(current_path, "BuildLua.json"))
@@ -183,32 +190,28 @@ def write_script(script_file_path, module_name=None):
                             script_out.write("\n")
 
 
-def print_error_message(message):
-    print("================== ERROR ==================")
-    print(message)
-    input("Press `Enter` to exit.")
-    sys.exit(1)
-
-
 def print_info_message(message):
     print(f"{message}")
 
 
 if __name__ == '__main__':
-    check_configs()
-    build_script_file_catalog()
+    try:
+        check_configs()
+        build_script_file_catalog()
 
-    clear_output_dir()
+        clear_output_dir()
 
-    check_script_path()
-    check_script_files()
+        check_script_path()
+        check_script_files()
 
-    with open(script_dest, "w") as script_out:
-        write_header()
+        with open(script_dest, "w") as script_out:
+            write_header()
 
-        for sf in script_files:
-            write_script(os.path.join(script_src_general, sf))
+            for sf in script_files:
+                write_script(os.path.join(script_src_general, sf))
 
-    copy_images()
-    print()
-    input("Press `Enter` to exit.")
+        copy_images()
+        print()
+        input("Press `Enter` to exit.")
+    except Exception as e:
+        print_error_message(f"{str(e)}\n\n{sys.exc_info()[0]}")

@@ -23,7 +23,7 @@ m.RegionMenu = Region(1291, 114, 102, 98)
 
 m.PathEndGameCheckItem = PathParent .. "next.png"
 m.RegionEndGameCheckItem = Region(1012, 2509, 133, 199)
-m.LocationProceedNext = Location(1097, 2665)
+m.LocationProceedNext = Location(1097, 2605)
 m.LocationNoContinue = Location(1114, 2880)
 m.LocationCloseMiddleDialog = Location(500, 1813)
 
