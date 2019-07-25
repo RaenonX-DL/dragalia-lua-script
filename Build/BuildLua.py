@@ -198,8 +198,6 @@ def print_info_message(message):
 
 if __name__ == '__main__':
     try:
-
-        raise TypeError()
         check_configs()
         build_script_file_catalog()
 
