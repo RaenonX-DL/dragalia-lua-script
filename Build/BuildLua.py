@@ -8,7 +8,7 @@ def print_error_message(message):
     print("================== ERROR ==================")
     print(message)
     print()
-    traceback.print_stack()
+    traceback.print_exc()
     input("Press `Enter` to exit.")
     sys.exit(1)
 
@@ -64,8 +64,8 @@ image_dir = "image"
 image_src = os.path.abspath(os.path.join(os.path.join(dir_specific, script), image_dir))
 image_dest = os.path.abspath(os.path.join(dir_output, image_dir))
 
-print(f"Source Directory for scripts: {image_src}")
-print(f"Destination Directory for scripts: {image_dest}")
+print(f"Source Directory for images: {image_src}")
+print(f"Destination Directory for images: {image_dest}")
 print()
 
 file_config_path = os.path.abspath(os.path.join(current_path, "BuildLua-files.json"))

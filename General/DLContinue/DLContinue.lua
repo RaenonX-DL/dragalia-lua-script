@@ -6,6 +6,7 @@ Settings:setScriptDimension(true, Configs.DimensionWidth)
 while true do
 	if States.current_state == States.COMMON_SCREEN then
 		click(Coordinates.LocationQuestTop)
+		ActionSet.handle_connection_errors(function() end)
 		for i = 1, Configs.FriendSelectChecks do 
 			wait(Configs.FriendSelectWaitSeconds)
 			if Check.check_friend_select_screen() then break end
