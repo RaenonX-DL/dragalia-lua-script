@@ -1,12 +1,5 @@
 -- Inherit General Common/System.lua
 
--- Update Stop Message
-
-local function update_stop_message()
-	setStopMessage(string.format("Elapsed Time: %.3f s (%d runs)\nState: %s\nPrevious State: %s", 
-								 begin_t:check(), RunsCounter.counter_runs, States.current_state, States.previous_state))
-end
-
 -- Infinite State Check Preventer
 
 unknown_state_count = 0

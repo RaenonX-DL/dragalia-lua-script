@@ -2,7 +2,7 @@
 
 m.LocationCommonClick = Location(1188, 1730)
 
-m.LocationQuestTop = Location(1361, 1607)
+m.LocationQuestTop = Location(230, 2129)
 
 m.LocationDifficultyTop = Location(736, 1008)
 m.PathDifficultyCheckItem = PathParent .. "diff.png"

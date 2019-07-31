@@ -40,7 +40,7 @@ m.RegionMenu = Region(0, 0, 0, 0)
 
 -- 戰鬥結束檢查用圖及結算點擊座標
 -- 參見image/next.png的範例圖檔。該圖位於圖6右下角*繼續*按鈕上。
--- 座標1 (ProceedNext): 按下*繼續*按鈕的位置
+-- 座標1 (ProceedNext): 按下*繼續*按鈕的位置。建議重疊圖6和圖23，兩個按鈕都能按到的座標。
 -- 座標2 (NoContinue): 按下*不續戰*按鈕的位置，於預設有支援的手機中是按下返回的虛擬按鈕
 -- 座標3 (CloseMiddleDialog): 關閉因出現EX而彈出的對話框的位置，詳見圖7關閉按鈕的位置。建議靠左。
 m.PathEndGameCheckItem = PathParent .. "next.png"

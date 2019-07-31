@@ -49,6 +49,9 @@ local function check_current_state(in_between_action)
 		
 	in_between_action()
 	if check_in_battle() then return end
+
+	in_between_action()
+	if check_post_game() then return end
 		
 	States.update_state(States.UNKNOWN)
 end

@@ -7,7 +7,9 @@ local function write_log(message)
 end
 
 local function screenshot_message_file_suffix(message, file_suffix)
-	fileName = string.format("log/%s-%s.png", os.date("%y%m%d-%H%M%S"), file_suffix)
+	setImagePath(scriptPath() .. "image/log")
+
+	fileName = string.format("%s-%s.png", os.date("%y%m%d-%H%M%S"), file_suffix)
 
 	log_stream:write(string.format("Screenshot saved at %s. Message: %s", fileName, message))
 	log_stream:write(message)
@@ -15,6 +17,8 @@ local function screenshot_message_file_suffix(message, file_suffix)
 	screen = getAppUsableScreenSize()
 	reg = Region(0, 0, screen:getX(), screen:getY())
 	reg:save(fileName)
+
+	setImagePath(scriptPath() .. "image")
 end
 
 local function screenshot_message(message)

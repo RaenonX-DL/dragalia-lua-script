@@ -5,8 +5,16 @@ begin_t = Timer()
 -- Update Stop Message
 
 local function update_stop_message()
-	setStopMessage(string.format("Elapsed Time: %.3f s \nState: %s\nPrevious State: %s", 
-								 begin_t:check(), States.current_state, States.previous_state))
+    if RunsCounter ~= nil and RunsCounter.counter_runs ~= nil then
+	    setStopMessage(
+	        string.format(
+	            "Elapsed Time: %.3f s (%d runs)\nState: %s\nPrevious State: %s",
+	            begin_t:check(), RunsCounter.counter_runs, States.current_state, States.previous_state))
+	else
+	    setStopMessage(
+	        string.format("Elapsed Time: %.3f s \nState: %s\nPrevious State: %s",
+	        begin_t:check(), States.current_state, States.previous_state))
+	end
 end
 
 -- Terminate

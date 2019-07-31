@@ -6,6 +6,7 @@ Settings:setScriptDimension(true, Configs.DimensionWidth)
 while true do
 	if States.current_state == States.COMMON_SCREEN then
 		click(Coordinates.LocationQuestTop)
+		ActionSet.handle_connection_errors(function() end)
 		for i = 1, Configs.FriendSelectChecks do 
 			wait(Configs.FriendSelectWaitSeconds)
 			if Check.check_friend_select_screen() then break end
@@ -13,6 +14,7 @@ while true do
 	elseif States.current_state == States.FRIEND_SELECT then
 		click(Coordinates.LocationMultiPlay)
 		Check.check_random_room()
+		ActionSet.handle_connection_errors(function() end)
 	elseif States.current_state == States.RANDOM_ROOM then
 		click(Coordinates.LocationRandomRoom)
 		Check.check_room_finding()
@@ -20,6 +22,8 @@ while true do
 		Check.check_insufficient_wings()
 	elseif States.current_state == States.FINDING_ROOM then
 		Check.check_in_room()
+		Check.check_in_battle()
+		Check.check_end_game()
 		click(Coordinates.LocationRandomRoom)
 		ActionSet.handle_connection_errors(ActionSet.click_common)
 	elseif States.current_state == States.INSUFFICIENT_WINGS then
@@ -31,12 +35,13 @@ while true do
 		else
 			Check.check_in_room()
 			Check.check_loading()
+			Check.check_battle_begin()
 		end
 	elseif States.current_state == States.LOADING then
 		System.activate_loading_destucker()
 		ActionSet.handle_connection_errors(function() end)
 		
-		if Check.check_battle_begin() or System.deactivate_loading_destucker() then
+		if Check.check_battle_begin() or System.check_destucker_overtime() then
 			System.deactivate_loading_destucker()
 		end
 	elseif States.current_state == States.BATTLE_START then
