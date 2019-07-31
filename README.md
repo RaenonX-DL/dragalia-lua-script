@@ -65,7 +65,7 @@
 這個腳本會不停刷Raid活動。針對活動所需要的動作不同，有可能會有戰鬥開始前置動作。
 
 #### 目前戰鬥開始前置動作對應的任務
-> **[夢幻祕寶 冒險島與](https://dragalialost.com/cht/news/detail/634)**
+> **[夢幻祕寶 冒險島嶼](https://dragalialost.com/cht/news/detail/634)**
 
 ### 目前可運行手機
 - 三星Galaxy S9+ (WQHD)

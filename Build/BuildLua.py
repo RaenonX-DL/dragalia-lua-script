@@ -143,7 +143,7 @@ def write_script(script_file_path, module_name=None):
     if script_file_path not in loaded_files:
         loaded_files.append(script_file_path)
 
-        with open(script_file_path) as script_file:
+        with open(script_file_path, encoding="utf-8") as script_file:
             f_name = os.path.splitext(os.path.basename(script_file.name))[0]
 
             if not module_name:
@@ -160,7 +160,7 @@ def write_script(script_file_path, module_name=None):
             if module_name == "DefaultConfigs":
                 module_name = "Configs"
 
-            for line in script_file.readlines():
+            for line in script_file:
                 line_strip = line.strip()
 
                 if "local m = {}" in line:
@@ -206,7 +206,7 @@ if __name__ == '__main__':
         check_script_path()
         check_script_files()
 
-        with open(script_dest, "w") as script_out:
+        with open(script_dest, "w", encoding="utf-8") as script_out:
             write_header()
 
             for sf in script_files:
