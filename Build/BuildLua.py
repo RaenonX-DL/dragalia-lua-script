@@ -182,9 +182,15 @@ def write_script(script_file_path, module_name=None):
                     if "m." in line_strip:
                         line = re.sub(r"(^|\s)(m)\.(\w+)", rf"\1{module_name}.\3", line)
 
+                    # Reduce "\n" to be only one
+                    line = line.replace("\n\n", "\n")
+
                     # Replace Comments
                     if "--" in line_strip:
                         line = re.sub(r"(\w*)--.+", r"\1", line)
+
+                    # Remove non-ascii
+                    line = "".join(list(filter(lambda c: c == '\n' or 32 <= ord(c) <= 126, line)))
 
                     if len(line.strip()) > 0:
                         script_out.write(line)

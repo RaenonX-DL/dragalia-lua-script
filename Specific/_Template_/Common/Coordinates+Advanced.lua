@@ -24,6 +24,10 @@ m.RegionServerErrorRetry = Region(0, 0, 0, 0)
 m.LocationServerErrorClose = Location(0, 0)
 m.LocationServerErrorRetry = Location(0, 0)
 
+-- 終戰時，資源溢出對話方塊的關閉字樣的圖片偵測區域和點擊座標
+-- 可參閱圖24中間的"閉"字樣。
+m.RegionCenterClose = Region(0, 0, 0, 0)
+m.LocationCenterClose = Location(0, 0)
 
 -- 補毛處理判斷用圖(不足字樣)
 -- 參見image/insufficient.png的範例圖檔。該圖位於圖13中間偏下，關閉按鈕的上方。

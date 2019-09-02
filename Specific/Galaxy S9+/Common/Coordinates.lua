@@ -16,7 +16,7 @@ m.LocationSkill1 = Location(523, SkillY)
 m.LocationSkill2 = Location(795, SkillY)
 m.LocationSkill3 = Location(1084, SkillY)
 m.LocationDragon = Location(202, 2229)
-m.LocationCommonClickBattle = Location(474, 1754)
+m.LocationCommonClickBattle = Location(724, 1666)
 
 m.PathMenu = PathParent .. "menu.png"
 m.RegionMenu = Region(1291, 114, 102, 98)

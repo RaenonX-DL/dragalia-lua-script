@@ -132,6 +132,7 @@
 #21|主功能|<img src="https://i.imgur.com/SRoxWjS.jpg" width="50"/>|點選任務並點選要多人遊玩以後，房間控制按鈕集中頁面
 #22|主功能|<img src="https://i.imgur.com/sq5Xsvg.jpg" width="50"/>|任務(龍之試煉、迎擊...等)選擇頁面
 #23|滅團處理|<img src="https://i.imgur.com/Z2ikp1W.jpg" width="50"/>|滅團後房主退房的畫面
+#24|主功能|<img src="https://i.imgur.com/YmRKuCf.jpg" width="50"/>|終戰後，溢出資源被送到信箱的畫面
 
 圖片提取要點
 - [圖12](https://i.imgur.com/ZLhFldZ.jpg): 比較難抓到，通常是腳本卡住以後截圖才有機會獲得。開戰前讀取中出現/進入隨機房前出現的截圖都可以做為[圖12](https://i.imgur.com/ZLhFldZ.jpg)。
@@ -139,6 +140,7 @@
 - [圖14](https://i.imgur.com/FGYcjcR.jpg): 必須顯示"羽毛不足"，否則圖片無法使用ˇ。
 - [圖17](https://i.imgur.com/FecDTDd.jpg): 找一位朋友協助開房，進房後請朋友關房。
 - [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg): 用很爛的隊伍到要求高的關卡自殺。
+- [圖24](https://i.imgur.com/YmRKuCf.jpg): 很少會看到這個畫面，如果想先生出來的話，可以利用交換所把特定資源先換到滿再打關卡。
 
 > 因為在範本自訂檔案中提到圖片會使用截圖序號，推薦開著本頁操作以隨時對應。
 

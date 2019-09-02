@@ -52,17 +52,9 @@ while true do
 	elseif States.current_state == States.IN_BATTLE then
 		ActionSet.click_common()
 		if not Check.check_dead() then
-			ActionSet.click_common()
 			Check.check_in_battle()
-			ActionSet.click_common()
-
-			ActionSet.click_common()
 			Check.check_end_game()
-			ActionSet.click_common()
-
-			ActionSet.click_common()
-			ActionSet.handle_connection_errors(ActionSet.click_common)
-			ActionSet.click_common()
+			ActionSet.handle_connection_errors(function() end)
 		end
 	elseif States.current_state == States.BATTLE_DEAD then
 		Check.check_end_game()

@@ -3,14 +3,15 @@
 m.PathLoading = PathParent .. "loading.png"
 m.RegionLoading = Region(1112, 2651, 227, 61)
 
-
-
 m.PathRetryTxt = PathParent .. "retry.png"
 m.PathCloseTxt = PathParent .. "close.png"
 m.RegionServerError = Region(628, 1782, 63, 60)
 m.RegionServerErrorRetry = Region(927, 1788, 214, 52)
 m.LocationServerErrorClose = Location(709, 1811)
 m.LocationServerErrorRetry = Location(1035, 1813)
+
+m.RegionCenterClose = Region(636, 1712, 79, 79)
+m.LocationCenterClose = Location(726, 1750)
 
 m.PathInsufficientTxt = PathParent .. "insufficient.png"
 m.RegionInsufficientWings = Region(410, 1850, 140, 90)

@@ -28,7 +28,7 @@ local function check_in_room()
 end
 
 local function check_in_battle()
-	return CheckBase.check_set_state_true_actions(Coordinates.RegionMenu, Coordinates.PathMenu, States.IN_BATTLE, ActionSet.use_skills)
+	return CheckBase.check_set_state(Coordinates.RegionMenu, Coordinates.PathMenu, States.IN_BATTLE)
 end
 
 local function check_end_game()
@@ -41,6 +41,12 @@ end
 
 local function check_dead()
 	return CheckBase.check_set_state(Coordinates.RegionContinueTxt, Coordinates.PathContinueTxt, States.BATTLE_DEAD)
+end
+
+local function check_center_close_dialog()
+	CheckBase.check_set_state_true_actions(Coordinates.RegionCenterClose, Coordinates.PathCloseTxt, States.current_state, function()
+		click(Coordinates.LocationCenterClose)
+	end)
 end
 
 local function check_current_state(in_between_action)
@@ -59,6 +65,7 @@ end
 m.check_in_room = check_in_room
 m.check_host_left = check_host_left
 m.check_dead = check_dead
+m.check_center_close_dialog = check_center_close_dialog
 m.check_in_battle = check_in_battle
 m.check_end_game = check_end_game
 m.check_post_game = check_post_game
