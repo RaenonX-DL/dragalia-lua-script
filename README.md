@@ -26,6 +26,7 @@
         - 螢幕高(Y)/寬(X)比若符合下列任一者，則對應的長寬比的手機型號所用的腳本**可能**可以運行。**可能**的原因是因為各牌手機的虛擬按鍵和通知列高度不一定相同，這會造成按鈕位置偏差。若無法運行，請參見下方[腳本自訂指引](#腳本自訂指引)。
             - 高(Y)/寬(X)比: 296/144 (2.055556), 使用 `Galaxy S9+` 的組建
             - 高(Y)/寬(X)比: 216/108 (2), 使用 `ROG Phone` 的組建
+            - 高(Y)/寬(X)比: 256/144 (1.777778), 使用 `Razer Phone 2` 的組建
     - 解析度無吻合型號 或 長寬比無吻合型號: 必須自訂座標組和截圖。詳見[腳本自訂指引](#腳本自訂指引)。
 - 使用對應的手機型號的腳本測試運行，若無法運行，請自訂座標組和截圖。詳見[腳本自訂指引](#腳本自訂指引)。
 
@@ -55,6 +56,7 @@
 ### 目前可運行手機
 - 三星Galaxy S9+ (WQHD)
 - 三星Galaxy Note 8 (WQHD) - 使用三星Galaxy S9+的腳本。
+- Razer Phone 2
 
 ### 支援[腳本自訂](#腳本自訂指引)
 是
@@ -101,9 +103,9 @@
 
 腳本 | 主功能 | 斷線處理 | 自動補毛 | 房主退房 | 滅團處理
 :---:|:---:|:---:|:---:|:---:|:---:
-[DL](#DL) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg) | - | - | [圖17](https://i.imgur.com/FecDTDd.jpg) | -
-[DL Continue](#DL-Continue) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖20](https://i.imgur.com/a74UnCW.jpg)、[圖21](https://i.imgur.com/SRoxWjS.jpg)<br/>[圖22](https://i.imgur.com/sq5Xsvg.jpg) | [圖11](https://i.imgur.com/0IXVxBh.jpg)、[圖12](https://i.imgur.com/ZLhFldZ.jpg)、[圖13](https://i.imgur.com/jwjxXTv.jpg) | [圖14](https://i.imgur.com/FGYcjcR.jpg)、[圖15](https://i.imgur.com/TMQGWMr.jpg)、[圖16](https://i.imgur.com/0aUihct.jpg) | [圖17](https://i.imgur.com/FecDTDd.jpg) | [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg)
-[DL Raid](#DL-Raid) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖8](https://i.imgur.com/Moczq9t.jpg)、[圖9](https://i.imgur.com/uJrSqCA.jpg)<br/>[圖10](https://i.imgur.com/hVbDrJz.jpg) | [圖11](https://i.imgur.com/0IXVxBh.jpg)、[圖12](https://i.imgur.com/ZLhFldZ.jpg)、[圖13](https://i.imgur.com/jwjxXTv.jpg) | [圖14](https://i.imgur.com/FGYcjcR.jpg)、[圖15](https://i.imgur.com/TMQGWMr.jpg)、[圖16](https://i.imgur.com/0aUihct.jpg) | [圖17](https://i.imgur.com/FecDTDd.jpg) | [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg)
+[DL](#DL) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖23](https://i.imgur.com/Z2ikp1W.jpg)、[圖24](https://i.imgur.com/YmRKuCf.jpg) | - | - | [圖17](https://i.imgur.com/FecDTDd.jpg) | -
+[DL Continue](#DL-Continue) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖20](https://i.imgur.com/a74UnCW.jpg)、[圖21](https://i.imgur.com/SRoxWjS.jpg)<br/>[圖22](https://i.imgur.com/sq5Xsvg.jpg)、[圖23](https://i.imgur.com/Z2ikp1W.jpg)、[圖24](https://i.imgur.com/YmRKuCf.jpg) | [圖11](https://i.imgur.com/0IXVxBh.jpg)、[圖12](https://i.imgur.com/ZLhFldZ.jpg)、[圖13](https://i.imgur.com/jwjxXTv.jpg) | [圖14](https://i.imgur.com/FGYcjcR.jpg)、[圖15](https://i.imgur.com/TMQGWMr.jpg)、[圖16](https://i.imgur.com/0aUihct.jpg) | [圖17](https://i.imgur.com/FecDTDd.jpg) | [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg)
+[DL Raid](#DL-Raid) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖8](https://i.imgur.com/Moczq9t.jpg)、[圖9](https://i.imgur.com/uJrSqCA.jpg)<br/>[圖10](https://i.imgur.com/hVbDrJz.jpg)、[圖23](https://i.imgur.com/Z2ikp1W.jpg)、[圖24](https://i.imgur.com/YmRKuCf.jpg) | [圖11](https://i.imgur.com/0IXVxBh.jpg)、[圖12](https://i.imgur.com/ZLhFldZ.jpg)、[圖13](https://i.imgur.com/jwjxXTv.jpg) | [圖14](https://i.imgur.com/FGYcjcR.jpg)、[圖15](https://i.imgur.com/TMQGWMr.jpg)、[圖16](https://i.imgur.com/0aUihct.jpg) | [圖17](https://i.imgur.com/FecDTDd.jpg) | [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg)
 
 ### 圖片畫面對照表
 

@@ -40,11 +40,11 @@ end
 -- Click Postgame Dialogs
 
 local function clicks_postgame_dialogs()
-	doubleClick(Coordinates.LocationProceedNext)
+	click(Coordinates.LocationProceedNext)
 	wait(Configs.ClickCooldownSeconds)
-	doubleClick(Coordinates.LocationCloseMiddleDialog)
+	click(Coordinates.LocationCloseMiddleDialog)
 	wait(Configs.ClickCooldownSeconds)
-	doubleClick(Coordinates.LocationNoContinue)
+	click(Coordinates.LocationNoContinue)
 	wait(Configs.ClickCooldownSeconds)
 end
 

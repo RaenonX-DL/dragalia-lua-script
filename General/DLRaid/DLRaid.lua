@@ -50,6 +50,7 @@ while true do
 		CustomActions.battle_begin_actions()
 		States.update_state(States.IN_BATTLE)
 	elseif States.current_state == States.IN_BATTLE then
+		RunsCounter.counter_ready()
 		ActionSet.click_common()
 		if not Check.check_dead() then
 			Check.check_in_battle()
