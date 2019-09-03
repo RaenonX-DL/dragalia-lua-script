@@ -29,6 +29,7 @@ while true do
 	elseif States.current_state == States.INSUFFICIENT_WINGS then
 		ActionSet.clicks_insufficient_wings()
 		Check.check_room_finding()
+		Check.check_in_room()
 	elseif States.current_state == States.READY then
 		if Check.check_host_left() then
 			wait(Configs.HostLeftWaitSeconds)
