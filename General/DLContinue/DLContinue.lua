@@ -39,13 +39,12 @@ while true do
 			Check.check_battle_begin()
 		end
 	elseif States.current_state == States.LOADING then
-		System.activate_loading_destucker()
-		ActionSet.handle_connection_errors(function() end)
-		
-		if Check.check_battle_begin() or System.check_destucker_overtime() then
-			System.deactivate_loading_destucker()
+		if ActionSet.handle_connection_errors(function() end) then
+			States.update_state(States.COMMON_SCREEN)
 		end
+		Check.check_battle_begin()
 	elseif States.current_state == States.BATTLE_START then
+		System.deactivate_loading_destucker()
 		CustomActions.battle_begin_actions()
 		States.update_state(States.IN_BATTLE)
 	elseif States.current_state == States.IN_BATTLE then

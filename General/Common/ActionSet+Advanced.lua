@@ -13,14 +13,24 @@ end
 
 local function handle_connection_errors(in_between_action)
 	in_between_action()
-	CheckBase.check_set_state_true_actions(Coordinates.RegionServerError, Coordinates.PathCloseTxt, States.current_state, function()
+
+	if CheckBase.check_set_state_true_actions(Coordinates.RegionServerError, Coordinates.PathCloseTxt, States.current_state, function()
 		click(Coordinates.LocationServerErrorClose)
-	end)
+	end) then
+		return true
+	end
+
 	in_between_action()
-	CheckBase.check_set_state_true_actions(Coordinates.RegionServerErrorRetry, Coordinates.PathRetryTxt, States.current_state, function()
+
+	if  CheckBase.check_set_state_true_actions(Coordinates.RegionServerErrorRetry, Coordinates.PathRetryTxt, States.current_state, function()
 		click(Coordinates.LocationServerErrorRetry)
-	end)
+	end) then
+		return true
+	end
+
 	in_between_action()
+
+	return false
 end
 
 m.clicks_insufficient_wings = clicks_insufficient_wings
