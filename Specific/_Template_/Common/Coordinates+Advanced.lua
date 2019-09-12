@@ -47,5 +47,6 @@ m.RegionRoomFindingTxt = Region(0, 0, 0, 0)
 
 -- 終戰時，資源溢出對話方塊的關閉字樣的圖片偵測區域和點擊座標
 -- 可參閱圖24中間的"閉"字樣。
+m.PathCenterClose = PathParent .. "overlimit.png"
 m.RegionCenterClose = Region(0, 0, 0, 0)
 m.LocationCenterClose = Location(0, 0)

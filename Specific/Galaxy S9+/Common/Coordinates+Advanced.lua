@@ -10,9 +10,6 @@ m.RegionServerErrorRetry = Region(927, 1788, 214, 52)
 m.LocationServerErrorClose = Location(709, 1811)
 m.LocationServerErrorRetry = Location(1035, 1813)
 
-m.RegionCenterClose = Region(636, 1712, 79, 79)
-m.LocationCenterClose = Location(726, 1750)
-
 m.PathInsufficientTxt = PathParent .. "insufficient.png"
 m.RegionInsufficientWings = Region(410, 1850, 140, 90)
 
@@ -20,6 +17,9 @@ m.LocationDiamantiumsRecover = Location(720, 995)
 
 m.LocationRecoverButtonAndClose = Location(816, 1851)
 
-
 m.PathRoomFindingTxt = PathParent .. "finding.png"
 m.RegionRoomFindingTxt = Region(710, 1450, 125, 70)
+
+m.PathCenterClose = PathParent .. "overlimit.png"
+m.RegionCenterClose = Region(636, 1712, 79, 79)
+m.LocationCenterClose = Location(726, 1750)

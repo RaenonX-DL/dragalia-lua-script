@@ -20,5 +20,6 @@ m.LocationRecoverButtonAndClose = Location(1139, 1639)
 m.PathRoomFindingTxt = PathParent .. "finding.png"
 m.RegionRoomFindingTxt = Region(717, 1263, 102, 53)
 
-m.RegionCenterClose = Region(645, 1510, 68, 62)
+m.PathCenterClose = PathParent .. "overlimit.png"
+m.RegionCenterClose = Region(127, 693, 226, 62)
 m.LocationCenterClose = Location(728, 1543)

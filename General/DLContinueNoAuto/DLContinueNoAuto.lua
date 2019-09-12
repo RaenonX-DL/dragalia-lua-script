@@ -50,12 +50,40 @@ while true do
 	elseif States.current_state == States.IN_BATTLE then
 		RunsCounter.counter_ready()
 		if not Check.check_dead() then
-			Check.check_in_battle()
+			for i = 1, 3 do
+				ActionSet.click_common()
+			end
+
+			if Check.check_in_battle() then
+				ActionSet.use_skills()
+			end
+
+			for i = 1, 3 do
+				ActionSet.click_common()
+			end
+
 			Check.check_end_game()
+
+			for i = 1, 3 do
+				ActionSet.click_common()
+			end
+
 			Check.check_post_game()
+			for i = 1, 3 do
+				ActionSet.click_common()
+			end
+
 			Check.check_center_close_dialog()
-			ActionSet.click_common()
+
+			for i = 1, 3 do
+				ActionSet.click_common()
+			end
+
 			ActionSet.handle_connection_errors(function() end)
+
+			for i = 1, 3 do
+				ActionSet.click_common()
+			end
 		end
 	elseif States.current_state == States.BATTLE_DEAD then
 		Check.check_end_game()

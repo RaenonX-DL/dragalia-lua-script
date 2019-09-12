@@ -44,7 +44,7 @@ local function check_dead()
 end
 
 local function check_center_close_dialog()
-	CheckBase.check_set_state_true_actions(Coordinates.RegionCenterClose, Coordinates.PathCloseTxt, States.current_state, function()
+	return CheckBase.check_set_state_true_actions(Coordinates.RegionCenterClose, Coordinates.PathCenterClose, States.current_state, function()
 		click(Coordinates.LocationCenterClose)
 	end)
 end

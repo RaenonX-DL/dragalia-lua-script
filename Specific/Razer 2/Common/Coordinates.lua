@@ -19,7 +19,7 @@ m.LocationDragon = Location(129, 1819)
 m.LocationCommonClickBattle = Location(327, 812)
 
 m.PathMenu = PathParent .. "menu.png"
-m.RegionMenu = Region(1313, 119, 74, 58)
+m.RegionMenu = Region(1312, 117, 76, 63)
 
 m.PathEndGameCheckItem = PathParent .. "next.png"
 m.RegionEndGameCheckItem = Region(187, 1731, 191, 54)
