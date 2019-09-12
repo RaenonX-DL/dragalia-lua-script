@@ -15,6 +15,7 @@
 :---:|:---:|:---:|:---:|:---:|:---:|
 [DL](#DL) | 單次 | X | X | O | X
 [DL Continue](#DL-Continue) | 輪迴 | O | O | O | O
+[DL Continue NoAuto](#DL-Continue-NoAuto) | 輪迴 | O | O | O | O
 [DL Raid](#DL-Raid) | 輪迴 | O | O | O | O
 ----
 ### 說明書閱讀方式
@@ -52,6 +53,20 @@
 
 # DL Continue
 這是[DL](#DL)的延伸版本。相較於[DL](#DL)，這個腳本會不停刷關，直到使用者停止。
+此腳本適用於可自動共鬥關卡。
+
+### 目前可運行手機
+- 三星Galaxy S9+ (WQHD)
+- 三星Galaxy Note 8 (WQHD) - 使用三星Galaxy S9+的腳本。
+- Razer Phone 2
+
+### 支援[腳本自訂](#腳本自訂指引)
+是
+
+----
+
+# DL Continue NoAuto
+這是[DLContinue](#DL-Continue)的另一版本。此腳本為不可自動關卡專用。使用時，請主控短劍等普攻會追怪的角色。
 
 ### 目前可運行手機
 - 三星Galaxy S9+ (WQHD)
