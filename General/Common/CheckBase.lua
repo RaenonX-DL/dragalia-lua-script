@@ -1,14 +1,20 @@
 local m = {}
 
 local function check_set_state_true_actions_wait_time(region, path, new_state, true_func, wait_time)
-	region:highlight()
+	if Configs.LogDebug then
+		region:highlight()
+	end
+
 	found = region:exists(path, wait_time)
 	
 	if found then
 		States.update_state(new_state)
 		true_func()
 	end
-	region:highlight()
+
+	if Configs.LogDebug then
+		region:highlight()
+	end
 	
 	return found
 end
@@ -22,7 +28,10 @@ local function check_set_state(region, path, new_state)
 end
 
 local function check_color(region, color_r, color_g, color_b)
-	region:highlight()
+	if Configs.LogDebug then
+		region:highlight()
+	end
+
 	for x = region:getX(), region:getW() do
 		for y = region:getY(), region:getH() do
 			r, g, b = getColor(Location(x, y))
@@ -32,7 +41,10 @@ local function check_color(region, color_r, color_g, color_b)
 			end
 		end
 	end
-	region:highlight()
+
+	if Configs.LogDebug then
+		region:highlight()
+	end
 	
 	return true
 end

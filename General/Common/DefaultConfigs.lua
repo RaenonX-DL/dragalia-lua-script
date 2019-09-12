@@ -8,6 +8,7 @@ m.DimensionWidth = 1440
 -- Script Executions
 
 m.ClickCooldownSeconds = 0.1
+m.ClickCooldownSecondsBattle = 5
 m.ScriptDefaultExistWaitMs = 0.05
 
 -- Action Specific Configurations

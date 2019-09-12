@@ -26,6 +26,7 @@ m.LocationReady = Location(0, 0)
 -- 龍化座標(LocationDragon) - 圖4中，點擊後會使角色龍化的座標。
 -- 普攻座標(LocationCommonClickBattle) - 圖4中任一點可以使角色普攻一下的座標。為了避免遊戲對話框誤判，建議偏左(大部分對話框"是"的選項都在右側)
 -- !!! : 請在繪圖軟體上重合圖4和圖6，以檢查技能3的座標(LocationSkill3)不會按到圖6中的*繼續*，否則有可能造成腳本誤判。
+-- !!! : 將座標點設定在「全員陣亡 & 戰鬥結束後，直接回到主畫面」時不會按到任何按鈕的地方可以避免誤按。
 SkillY = 0
 m.LocationSkill1 = Location(0, SkillY)
 m.LocationSkill2 = Location(0, SkillY)

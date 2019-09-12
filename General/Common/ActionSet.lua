@@ -3,18 +3,20 @@ local m = {}
 -- Click Common
 
 last_click = Timer()
+last_click_battle = Timer()
 local function click_common()
-	if last_click:check() > Configs.ClickCooldownSeconds then
-		if States.current_state == States.IN_BATTLE then
+	if States.current_state == States.IN_BATTLE then
+		if last_click_battle:check() > Configs.ClickCooldownSecondsBattle then
 			click(Coordinates.LocationCommonClickBattle)
-		else
-			click(Coordinates.LocationCommonClick)
+			last_click_battle = Timer()
 		end
-		last_click:set()
-		System.generate_toast()
+		last_click = Timer()
 	else
-		wait(Configs.ClickCooldownSeconds - last_click:check())
-		click_common()
+		if last_click:check() > Configs.ClickCooldownSeconds then
+			click(Coordinates.LocationCommonClick)
+			last_click = Timer()
+		end
+		last_click_battle = Timer()
 	end
 end
 
@@ -40,11 +42,11 @@ end
 -- Click Postgame Dialogs
 
 local function clicks_postgame_dialogs()
-	doubleClick(Coordinates.LocationProceedNext)
+	click(Coordinates.LocationProceedNext)
 	wait(Configs.ClickCooldownSeconds)
-	doubleClick(Coordinates.LocationCloseMiddleDialog)
+	click(Coordinates.LocationCloseMiddleDialog)
 	wait(Configs.ClickCooldownSeconds)
-	doubleClick(Coordinates.LocationNoContinue)
+	click(Coordinates.LocationNoContinue)
 	wait(Configs.ClickCooldownSeconds)
 end
 

@@ -26,6 +26,7 @@
         - 螢幕高(Y)/寬(X)比若符合下列任一者，則對應的長寬比的手機型號所用的腳本**可能**可以運行。**可能**的原因是因為各牌手機的虛擬按鍵和通知列高度不一定相同，這會造成按鈕位置偏差。若無法運行，請參見下方[腳本自訂指引](#腳本自訂指引)。
             - 高(Y)/寬(X)比: 296/144 (2.055556), 使用 `Galaxy S9+` 的組建
             - 高(Y)/寬(X)比: 216/108 (2), 使用 `ROG Phone` 的組建
+            - 高(Y)/寬(X)比: 256/144 (1.777778), 使用 `Razer Phone 2` 的組建
     - 解析度無吻合型號 或 長寬比無吻合型號: 必須自訂座標組和截圖。詳見[腳本自訂指引](#腳本自訂指引)。
 - 使用對應的手機型號的腳本測試運行，若無法運行，請自訂座標組和截圖。詳見[腳本自訂指引](#腳本自訂指引)。
 
@@ -55,6 +56,7 @@
 ### 目前可運行手機
 - 三星Galaxy S9+ (WQHD)
 - 三星Galaxy Note 8 (WQHD) - 使用三星Galaxy S9+的腳本。
+- Razer Phone 2
 
 ### 支援[腳本自訂](#腳本自訂指引)
 是
@@ -65,7 +67,7 @@
 這個腳本會不停刷Raid活動。針對活動所需要的動作不同，有可能會有戰鬥開始前置動作。
 
 #### 目前戰鬥開始前置動作對應的任務
-> **[夢幻祕寶 冒險島與](https://dragalialost.com/cht/news/detail/634)**
+> **[夢幻祕寶 冒險島嶼](https://dragalialost.com/cht/news/detail/634)**
 
 ### 目前可運行手機
 - 三星Galaxy S9+ (WQHD)
@@ -101,9 +103,9 @@
 
 腳本 | 主功能 | 斷線處理 | 自動補毛 | 房主退房 | 滅團處理
 :---:|:---:|:---:|:---:|:---:|:---:
-[DL](#DL) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg) | - | - | [圖17](https://i.imgur.com/FecDTDd.jpg) | -
-[DL Continue](#DL-Continue) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖20](https://i.imgur.com/a74UnCW.jpg)、[圖21](https://i.imgur.com/SRoxWjS.jpg)<br/>[圖22](https://i.imgur.com/sq5Xsvg.jpg) | [圖11](https://i.imgur.com/0IXVxBh.jpg)、[圖12](https://i.imgur.com/ZLhFldZ.jpg)、[圖13](https://i.imgur.com/jwjxXTv.jpg) | [圖14](https://i.imgur.com/FGYcjcR.jpg)、[圖15](https://i.imgur.com/TMQGWMr.jpg)、[圖16](https://i.imgur.com/0aUihct.jpg) | [圖17](https://i.imgur.com/FecDTDd.jpg) | [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg)
-[DL Raid](#DL-Raid) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖8](https://i.imgur.com/Moczq9t.jpg)、[圖9](https://i.imgur.com/uJrSqCA.jpg)<br/>[圖10](https://i.imgur.com/hVbDrJz.jpg) | [圖11](https://i.imgur.com/0IXVxBh.jpg)、[圖12](https://i.imgur.com/ZLhFldZ.jpg)、[圖13](https://i.imgur.com/jwjxXTv.jpg) | [圖14](https://i.imgur.com/FGYcjcR.jpg)、[圖15](https://i.imgur.com/TMQGWMr.jpg)、[圖16](https://i.imgur.com/0aUihct.jpg) | [圖17](https://i.imgur.com/FecDTDd.jpg) | [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg)
+[DL](#DL) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖23](https://i.imgur.com/Z2ikp1W.jpg)、[圖24](https://i.imgur.com/YmRKuCf.jpg) | - | - | [圖17](https://i.imgur.com/FecDTDd.jpg) | -
+[DL Continue](#DL-Continue) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖20](https://i.imgur.com/a74UnCW.jpg)、[圖21](https://i.imgur.com/SRoxWjS.jpg)<br/>[圖22](https://i.imgur.com/sq5Xsvg.jpg)、[圖23](https://i.imgur.com/Z2ikp1W.jpg)、[圖24](https://i.imgur.com/YmRKuCf.jpg) | [圖11](https://i.imgur.com/0IXVxBh.jpg)、[圖12](https://i.imgur.com/ZLhFldZ.jpg)、[圖13](https://i.imgur.com/jwjxXTv.jpg) | [圖14](https://i.imgur.com/FGYcjcR.jpg)、[圖15](https://i.imgur.com/TMQGWMr.jpg)、[圖16](https://i.imgur.com/0aUihct.jpg) | [圖17](https://i.imgur.com/FecDTDd.jpg) | [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg)
+[DL Raid](#DL-Raid) | [圖1](https://i.imgur.com/N0ZkK6p.jpg)、[圖2](https://i.imgur.com/FYwANMu.jpg)、[圖3](https://i.imgur.com/wopdueG.jpg)<br/>[圖4](https://i.imgur.com/Ign8UrZ.jpg)、[圖5](https://i.imgur.com/Lf0lIHw.jpg)、[圖6](https://i.imgur.com/kFyCGVF.jpg)<br/>[圖7](https://i.imgur.com/3ZQ4Fka.jpg)、[圖8](https://i.imgur.com/Moczq9t.jpg)、[圖9](https://i.imgur.com/uJrSqCA.jpg)<br/>[圖10](https://i.imgur.com/hVbDrJz.jpg)、[圖23](https://i.imgur.com/Z2ikp1W.jpg)、[圖24](https://i.imgur.com/YmRKuCf.jpg) | [圖11](https://i.imgur.com/0IXVxBh.jpg)、[圖12](https://i.imgur.com/ZLhFldZ.jpg)、[圖13](https://i.imgur.com/jwjxXTv.jpg) | [圖14](https://i.imgur.com/FGYcjcR.jpg)、[圖15](https://i.imgur.com/TMQGWMr.jpg)、[圖16](https://i.imgur.com/0aUihct.jpg) | [圖17](https://i.imgur.com/FecDTDd.jpg) | [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg)
 
 ### 圖片畫面對照表
 
@@ -132,6 +134,7 @@
 #21|主功能|<img src="https://i.imgur.com/SRoxWjS.jpg" width="50"/>|點選任務並點選要多人遊玩以後，房間控制按鈕集中頁面
 #22|主功能|<img src="https://i.imgur.com/sq5Xsvg.jpg" width="50"/>|任務(龍之試煉、迎擊...等)選擇頁面
 #23|滅團處理|<img src="https://i.imgur.com/Z2ikp1W.jpg" width="50"/>|滅團後房主退房的畫面
+#24|主功能|<img src="https://i.imgur.com/YmRKuCf.jpg" width="50"/>|終戰後，溢出資源被送到信箱的畫面
 
 圖片提取要點
 - [圖12](https://i.imgur.com/ZLhFldZ.jpg): 比較難抓到，通常是腳本卡住以後截圖才有機會獲得。開戰前讀取中出現/進入隨機房前出現的截圖都可以做為[圖12](https://i.imgur.com/ZLhFldZ.jpg)。
@@ -139,6 +142,7 @@
 - [圖14](https://i.imgur.com/FGYcjcR.jpg): 必須顯示"羽毛不足"，否則圖片無法使用ˇ。
 - [圖17](https://i.imgur.com/FecDTDd.jpg): 找一位朋友協助開房，進房後請朋友關房。
 - [圖18](https://i.imgur.com/3RDUKFx.jpg)、[圖19](https://i.imgur.com/Jn4nRsl.jpg): 用很爛的隊伍到要求高的關卡自殺。
+- [圖24](https://i.imgur.com/YmRKuCf.jpg): 很少會看到這個畫面，如果想先生出來的話，可以利用交換所把特定資源先換到滿再打關卡。
 
 > 因為在範本自訂檔案中提到圖片會使用截圖序號，推薦開著本頁操作以隨時對應。
 

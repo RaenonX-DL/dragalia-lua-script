@@ -24,10 +24,9 @@ m.RegionServerErrorRetry = Region(0, 0, 0, 0)
 m.LocationServerErrorClose = Location(0, 0)
 m.LocationServerErrorRetry = Location(0, 0)
 
-
 -- 補毛處理判斷用圖(不足字樣)
 -- 參見image/insufficient.png的範例圖檔。該圖位於圖13中間偏下，關閉按鈕的上方。
-m.PathInsufficientTxt = m.PathParent .. "insufficient.png"
+m.PathInsufficientTxt = PathParent .. "insufficient.png"
 m.RegionInsufficientWings = Region(0, 0, 0, 0)
 
 -- 補毛選擇點擊座標
@@ -41,5 +40,13 @@ m.LocationRecoverButtonAndClose = Location(0, 0)
 
 -- 房間檢索中的圖和圖片偵測區域
 -- 參見image/finding.png的範例圖檔。該圖位於圖2偏中間的"檢索"字樣。
-m.PathRoomFindingTxt = m.PathParent .. "finding.png"
+m.PathRoomFindingTxt = PathParent .. "finding.png"
 m.RegionRoomFindingTxt = Region(0, 0, 0, 0)
+
+-- ========== v2.3.0 ==========
+
+-- 終戰時，資源溢出對話方塊的關閉字樣的圖片偵測區域和點擊座標
+-- 可參閱圖24中間的"閉"字樣。
+m.PathCenterClose = PathParent .. "overlimit.png"
+m.RegionCenterClose = Region(0, 0, 0, 0)
+m.LocationCenterClose = Location(0, 0)

@@ -143,7 +143,7 @@ def write_script(script_file_path, module_name=None):
     if script_file_path not in loaded_files:
         loaded_files.append(script_file_path)
 
-        with open(script_file_path) as script_file:
+        with open(script_file_path, encoding="utf-8") as script_file:
             f_name = os.path.splitext(os.path.basename(script_file.name))[0]
 
             if not module_name:
@@ -160,7 +160,7 @@ def write_script(script_file_path, module_name=None):
             if module_name == "DefaultConfigs":
                 module_name = "Configs"
 
-            for line in script_file.readlines():
+            for line in script_file:
                 line_strip = line.strip()
 
                 if "local m = {}" in line:
@@ -182,9 +182,15 @@ def write_script(script_file_path, module_name=None):
                     if "m." in line_strip:
                         line = re.sub(r"(^|\s)(m)\.(\w+)", rf"\1{module_name}.\3", line)
 
+                    # Reduce "\n" to be only one
+                    line = line.replace("\n\n", "\n")
+
                     # Replace Comments
                     if "--" in line_strip:
                         line = re.sub(r"(\w*)--.+", r"\1", line)
+
+                    # Remove non-ascii
+                    line = "".join(list(filter(lambda c: c == '\n' or 32 <= ord(c) <= 126, line)))
 
                     if len(line.strip()) > 0:
                         script_out.write(line)
@@ -206,7 +212,7 @@ if __name__ == '__main__':
         check_script_path()
         check_script_files()
 
-        with open(script_dest, "w") as script_out:
+        with open(script_dest, "w", encoding="utf-8") as script_out:
             write_header()
 
             for sf in script_files:
