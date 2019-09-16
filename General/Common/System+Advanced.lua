@@ -38,7 +38,6 @@ local function deactivate_loading_destucker()
 	loading_timer = nil
 end
 
-m.update_stop_message = update_stop_message
 m.count_analyze_state = count_analyze_state
 m.activate_loading_destucker = activate_loading_destucker
 m.check_destucker_overtime = check_destucker_overtime

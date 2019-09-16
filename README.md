@@ -65,16 +65,39 @@
 
 ----
 
+# DL Continue2
+這是[DLContinue](#DL-Continue)的另一版本。此腳本戰鬥中需要啟動自動功能。這是和朋友一起掛可自動共鬥關卡時可以自動連打的腳本
+
+### 目前可運行手機
+- 三星Galaxy S9+ (WQHD)
+- 三星Galaxy Note 8 (WQHD) - 使用三星Galaxy S9+的腳本。
+
+### 支援[腳本自訂](#腳本自訂指引)
+是 (文件不完整，無範例檔案)
+
+----
+
 # DL Continue NoAuto
 這是[DLContinue](#DL-Continue)的另一版本。此腳本為不可自動關卡專用。使用時，請主控短劍等普攻會追怪的角色。
 
 ### 目前可運行手機
 - 三星Galaxy S9+ (WQHD)
 - 三星Galaxy Note 8 (WQHD) - 使用三星Galaxy S9+的腳本。
-- Razer Phone 2
 
 ### 支援[腳本自訂](#腳本自訂指引)
-是
+是 (文件不完整，無範例檔案)
+
+----
+
+# DL Stamina
+連續遊玩單機關卡的腳本。體力不足時，會自動吃蜂蜜。
+
+### 目前可運行手機
+- 三星Galaxy S9+ (WQHD)
+- 三星Galaxy Note 8 (WQHD) - 使用三星Galaxy S9+的腳本。
+
+### 支援[腳本自訂](#腳本自訂指引)
+是 (文件不完整，無範例檔案)
 
 ----
 
