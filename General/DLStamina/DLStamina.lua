@@ -15,9 +15,7 @@ while true do
 		ActionSet.clicks_postgame_dialogs()
 		Check.check_re()
 	elseif States.current_state == States.RE then
-		click(Coordinates.LocationContinue)
-		click(Coordinates.LocationRe)
-		click(Coordinates.LocationConfirmContinue)
+		ActionSet.clicks_re_dialogs()
 		Check.check_insufficient_stamina()
 		Check.check_in_battle()
 	elseif States.current_state == States.INSUFFICIENT_STAMINA then

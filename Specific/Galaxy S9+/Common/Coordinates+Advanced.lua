@@ -11,7 +11,7 @@ m.LocationServerErrorClose = Location(709, 1811)
 m.LocationServerErrorRetry = Location(1035, 1813)
 
 m.PathInsufficientTxt = PathParent .. "insufficient.png"
-m.RegionInsufficientWings = Region(410, 1850, 140, 90)
+m.RegionInsufficientWings = Region(410, 1850, 140, 180)
 
 m.LocationDiamantiumsRecover = Location(720, 995)
 
