@@ -1,4 +1,4 @@
-Settings:setCompareDimension(true, Configs.DimensionWidth)
+Settings:setCompareDimension(true, Configs.CompareDimensionWidth)
 Settings:setScriptDimension(true, Configs.DimensionWidth)
 
 ------- MAIN -------

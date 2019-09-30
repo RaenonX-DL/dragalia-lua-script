@@ -4,6 +4,7 @@ local m = {}
 
 m.LogDebug = false
 m.DimensionWidth = 1440
+m.CompareDimensionWidth = 360
 
 -- Script Executions
 

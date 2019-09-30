@@ -1,4 +1,4 @@
-Settings:setCompareDimension(true, Configs.DimensionWidth)
+Settings:setCompareDimension(true, Configs.CompareDimensionWidth)
 Settings:setScriptDimension(true, Configs.DimensionWidth)
 
 ------- MAIN -------
@@ -16,6 +16,7 @@ while true do
 		Check.check_re()
 	elseif States.current_state == States.RE then
 		Check.check_in_battle()
+		Check.check_end_game()
 		click(Coordinates.LocationContinue)
 		wait(Configs.ClickReCooldownSeconds)
 		click(Coordinates.LocationRe)
