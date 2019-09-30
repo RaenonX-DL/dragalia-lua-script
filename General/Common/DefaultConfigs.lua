@@ -21,5 +21,5 @@ m.ReadyValidityPeriodSeconds = 5
 
 -- Toast
 
-m.ToastCooldownSeconds = 10
+m.ToastCooldownSeconds = 5
 m.ToastEnable = true

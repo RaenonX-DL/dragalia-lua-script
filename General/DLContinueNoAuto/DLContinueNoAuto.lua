@@ -37,7 +37,9 @@ while true do
 			Check.check_in_room()
 			Check.check_loading()
 			Check.check_battle_begin()
-			ActionSet.handle_connection_errors(function() end)
+			if ActionSet.handle_connection_errors(function() end) then
+				Check.check_post_game()
+			end
 		end
 	elseif States.current_state == States.LOADING then
 		ActionSet.handle_connection_errors(function() end)

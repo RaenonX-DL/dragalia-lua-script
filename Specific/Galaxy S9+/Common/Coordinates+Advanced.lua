@@ -7,8 +7,8 @@ m.PathRetryTxt = PathParent .. "retry.png"
 m.PathCloseTxt = PathParent .. "close.png"
 m.RegionServerError = Region(628, 1782, 63, 60)
 m.RegionServerErrorRetry = Region(927, 1788, 214, 52)
-m.LocationServerErrorClose = Location(709, 1811)
-m.LocationServerErrorRetry = Location(1035, 1813)
+m.LocationServerErrorClose = Location(900, 1806)
+m.LocationServerErrorRetry = Location(900, 1806)
 
 m.PathInsufficientTxt = PathParent .. "insufficient.png"
 m.RegionInsufficientWings = Region(410, 1850, 140, 180)

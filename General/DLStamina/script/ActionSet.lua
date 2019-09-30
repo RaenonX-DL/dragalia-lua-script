@@ -16,15 +16,6 @@ local function clicks_postgame_dialogs()
     wait(Configs.ClickCooldownSeconds)
 end
 
-local function clicks_re_dialogs()
-    click(Coordinates.LocationContinue)
-    wait(Configs.ClickReCooldownSeconds)
-    click(Coordinates.LocationRe)
-    wait(Configs.ClickReCooldownSeconds)
-    click(Coordinates.LocationConfirmContinue)
-    wait(Configs.ClickReCooldownSeconds)
-end
-
 local function fill_stamina()
     for _ = 1, Configs.FillStaminaTaps do
         click(Coordinates.LocationFillStamina)
@@ -37,5 +28,4 @@ end
 
 m.clicks_insufficient_stamina = clicks_insufficient_stamina
 m.clicks_postgame_dialogs = clicks_postgame_dialogs
-m.clicks_re_dialogs = clicks_re_dialogs
 m.fill_stamina = fill_stamina

@@ -2,6 +2,6 @@
 
 -- Action Specific Configurations
 
-m.MaxLoadingStuckSeconds = 30
+m.MaxLoadingStuckSeconds = 60
 
 m.MaxStateChecksOnUnknown = 60

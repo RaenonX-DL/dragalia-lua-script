@@ -15,12 +15,29 @@ while true do
 		ActionSet.clicks_postgame_dialogs()
 		Check.check_re()
 	elseif States.current_state == States.RE then
-		ActionSet.clicks_re_dialogs()
-		Check.check_insufficient_stamina()
 		Check.check_in_battle()
+		click(Coordinates.LocationContinue)
+		wait(Configs.ClickReCooldownSeconds)
+		click(Coordinates.LocationRe)
+		wait(Configs.ClickReCooldownSeconds)
+		if not Check.check_insufficient_stamina() then
+			click(Coordinates.LocationConfirmContinue)
+			wait(Configs.ClickReCooldownSeconds)
+		end
 	elseif States.current_state == States.INSUFFICIENT_STAMINA then
-		click(Coordinates.LocationFillStaminaHoney)
-		Check.check_fill_stamina()
+		if Configs.FillStaminaType == "diams" then
+			click(Coordinates.LocationFillStaminaDiams)
+			wait(Configs.ClickReCooldownSeconds)
+			click(Coordinates.LocationRecoverConfirm)
+			wait(Configs.ClickReCooldownSeconds)
+			Check.check_in_battle()
+		elseif Configs.FillStaminaType == "honey" then
+			click(Coordinates.LocationFillStaminaHoney)
+			Check.check_fill_stamina()
+		else
+			System.terminate("FillStaminaType improperly configured.")
+		end
+		ActionSet.handle_connection_errors(function() end)
 	elseif States.current_state == States.FILL_STAMINA then
 		ActionSet.fill_stamina()
 		wait(Configs.FillAfterCheckWaitSeconds)

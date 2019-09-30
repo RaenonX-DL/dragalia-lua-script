@@ -8,13 +8,18 @@ m.PathReCheck = PathParent .. "re.png"
 m.RegionReCheck = Region(1056, 2065, 109, 55)
 m.LocationReCheck = Location(994, 2157)
 
-m.RegionInsufficientStamina = Region(397, 1864, 160, 64)
-m.LocationFillStaminaHoney = Location(712, 1644)
+m.RegionInsufficientStamina = Region(394, 1950, 183, 66)
+m.LocationFillStaminaHoney = Location(733, 1633)
 
-m.RegionFillStamina = Region(393, 887, 160, 72)
-m.LocationFillStamina = Location(1248, 1202)
+m.LocationFillStaminaDiams = Location(688, 982)
+
+m.RegionFillStamina = Region(391, 906, 189, 66)
+m.LocationFillStamina = Location(1251, 1222)
 m.LocationUseHoney = Location(1023, 2170)
-m.LocationRecoverConfirm = Location(1023, 1736)
+m.LocationRecoverConfirm = Location(1202, 1831)
 
 m.RegionCenterClose = Region(641, 1719, 69, 66)
 m.LocationCenterClose = Location(729, 1755)
+
+m.RegionBuffCloseDialog = Region(619, 2121, 80, 71)
+m.LocationBuffCloseDialog = Location(715, 2153)

@@ -25,7 +25,7 @@ m.PathEndGameCheckItem = PathParent .. "next.png"
 m.RegionEndGameCheckItem = Region(1012, 2509, 133, 199)
 m.LocationProceedNext = Location(1097, 2605)
 m.LocationNoContinue = Location(1114, 2880)
-m.LocationCloseMiddleDialog = Location(500, 1813)
+m.LocationCloseMiddleDialog = Location(720, 1813)
 
 
 

@@ -22,7 +22,7 @@ local function handle_connection_errors(in_between_action)
 
 	in_between_action()
 
-	if  CheckBase.check_set_state_true_actions(Coordinates.RegionServerErrorRetry, Coordinates.PathRetryTxt, States.current_state, function()
+	if CheckBase.check_set_state_true_actions(Coordinates.RegionServerErrorRetry, Coordinates.PathRetryTxt, States.current_state, function()
 		click(Coordinates.LocationServerErrorRetry)
 	end) then
 		return true
