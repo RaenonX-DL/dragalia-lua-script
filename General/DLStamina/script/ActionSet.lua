@@ -10,9 +10,9 @@ local function clicks_insufficient_stamina()
 end
 
 local function clicks_postgame_dialogs()
-    click(Coordinates.LocationContinue)
-    wait(Configs.ClickCooldownSeconds)
     click(Coordinates.LocationCloseMiddleDialog)
+    wait(Configs.ClickCooldownSeconds)
+    click(Coordinates.LocationContinue)
     wait(Configs.ClickCooldownSeconds)
 end
 

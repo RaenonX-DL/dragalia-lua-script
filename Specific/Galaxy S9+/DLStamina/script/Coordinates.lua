@@ -5,7 +5,7 @@ m.LocationRe = Location(1199, 2184)
 m.LocationConfirmContinue = Location(1257, 1833)
 
 m.PathReCheck = PathParent .. "re.png"
-m.RegionReCheck = Region(1056, 2065, 109, 55)
+m.RegionReCheck = Region(1046, 2060, 129, 65)
 m.LocationReCheck = Location(994, 2157)
 
 m.RegionInsufficientStamina = Region(394, 1950, 183, 66)

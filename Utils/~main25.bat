@@ -1,0 +1,1 @@
+resize.bat 25 image.old image

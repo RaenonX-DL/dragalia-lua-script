@@ -4,6 +4,9 @@ import os, sys, re, datetime, json, traceback
 import shutil
 
 
+# Optimize: http://ankulua-tw.boards.net/thread/23/
+
+
 def print_error_message(message):
     print("================== ERROR ==================")
     print(message)

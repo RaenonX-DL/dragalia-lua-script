@@ -14,11 +14,10 @@ while true do
 		RunsCounter.count_once()
 		ActionSet.clicks_postgame_dialogs()
 		Check.check_re()
+		Check.check_in_battle()
 	elseif States.current_state == States.RE then
 		Check.check_in_battle()
 		Check.check_end_game()
-		click(Coordinates.LocationContinue)
-		wait(Configs.ClickReCooldownSeconds)
 		click(Coordinates.LocationRe)
 		wait(Configs.ClickReCooldownSeconds)
 		if not Check.check_insufficient_stamina() then
