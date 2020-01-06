@@ -12,18 +12,25 @@ while true do
 		Check.check_center_close_dialog()
 	elseif States.current_state == States.END then
 		RunsCounter.count_once()
-		ActionSet.clicks_postgame_dialogs()
-		Check.check_re()
-		Check.check_in_battle()
-	elseif States.current_state == States.RE then
-		Check.check_in_battle()
-		Check.check_end_game()
-		click(Coordinates.LocationRe)
-		wait(Configs.ClickReCooldownSeconds)
-		if not Check.check_insufficient_stamina() then
-			click(Coordinates.LocationConfirmContinue)
-			wait(Configs.ClickReCooldownSeconds)
+		click(Coordinates.LocationContinue)
+		wait(Configs.ClickCooldownSeconds)
+
+		if Check.check_re() then
+		elseif Check.check_center_close_dialog() then
+		elseif Check.check_in_battle() then
 		end
+
+		ActionSet.handle_connection_errors(function() end)
+	elseif States.current_state == States.RE then
+		click(Coordinates.LocationRe)
+		wait(Configs.ClickCooldownSeconds)
+
+		if Check.check_insufficient_stamina() then
+		elseif Check.check_re_confirmation_dialog() then
+		elseif Check.check_in_battle() then
+		end
+
+		ActionSet.handle_connection_errors(function() end)
 	elseif States.current_state == States.INSUFFICIENT_STAMINA then
 		if Configs.FillStaminaType == "diams" then
 			click(Coordinates.LocationFillStaminaDiams)

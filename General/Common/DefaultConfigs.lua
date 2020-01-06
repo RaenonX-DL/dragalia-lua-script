@@ -8,8 +8,8 @@ m.CompareDimensionWidth = 360
 
 -- Script Executions
 
-m.ClickCooldownSeconds = 0.1
-m.ClickCooldownSecondsBattle = 5
+m.ClickCooldownSeconds = 0.15
+m.ClickCooldownSecondsBattle = 0.05
 m.ScriptDefaultExistWaitMs = 0.05
 
 -- Action Specific Configurations

@@ -18,6 +18,12 @@ local function dismiss_end_battle_mid_dialog()
 	end)
 end
 
+local function check_re_confirmation_dialog()
+    return CheckBase.check_set_state_true_actions(Coordinates.RegionReConfirmation, Coordinates.PathReConfirmation, States.current_state, function()
+		click(Coordinates.LocationConfirmContinue)
+	end)
+end
+
 local function check_current_state(in_between_action)
 	in_between_action()
 	if check_in_battle() then return end
@@ -32,4 +38,5 @@ m.check_re = check_re
 m.check_insufficient_stamina = check_insufficient_stamina
 m.check_fill_stamina = check_fill_stamina
 m.check_current_state = check_current_state
+m.check_re_confirmation_dialog = check_re_confirmation_dialog
 m.dismiss_end_battle_mid_dialog = dismiss_end_battle_mid_dialog

@@ -16,6 +16,7 @@ while true do
         end
     elseif States.current_state == States.DIFFICULTY then
         click(Coordinates.LocationDifficultyTop)
+        wait(1.5)
         Check.check_room_select()
     elseif States.current_state == States.ROOM_SELECT then
         click(Coordinates.LocationRandomRoom)
@@ -26,7 +27,7 @@ while true do
     elseif States.current_state == States.FINDING_ROOM then
         Check.check_in_room()
         click(Coordinates.LocationRandomRoom)
-        ActionSet.handle_connection_errors(ActionSet.click_common)
+        ActionSet.handle_connection_errors(function() end)
         Check.check_loading()
         Check.check_end_game()
     elseif States.current_state == States.INSUFFICIENT_WINGS then
@@ -59,9 +60,25 @@ while true do
         RunsCounter.counter_ready()
         ActionSet.click_common()
         if not Check.check_dead() then
-            Check.check_in_battle()
-            Check.check_end_game()
-            Check.dismiss_end_battle_mid_dialog()
+            if not Check.check_in_battle() then
+                ActionSet.click_common3()
+            end
+
+            if not Check.check_end_game() then
+                ActionSet.click_common3()
+                ActionSet.use_skills()
+            end
+
+            if not Check.dismiss_end_battle_mid_dialog() then
+                ActionSet.click_common3()
+                ActionSet.use_skills()
+            end
+
+            if not Check.check_post_game() then
+                ActionSet.click_common3()
+                ActionSet.use_skills()
+            end
+
             ActionSet.handle_connection_errors(function()
             end)
         end

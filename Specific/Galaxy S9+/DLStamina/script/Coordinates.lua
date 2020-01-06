@@ -1,8 +1,8 @@
 -- Inherit Specific Common/Coordinates+Advanced.lua
 
 m.LocationContinue = Location(244, 2669)
-m.LocationRe = Location(1199, 2184)
-m.LocationConfirmContinue = Location(1257, 1833)
+m.LocationRe = Location(1000, 2158)
+m.LocationConfirmContinue = Location(1040, 1811)
 
 m.PathReCheck = PathParent .. "re.png"
 m.RegionReCheck = Region(1046, 2060, 129, 65)
@@ -23,3 +23,6 @@ m.LocationCenterClose = Location(729, 1755)
 
 m.RegionBuffCloseDialog = Region(619, 2121, 80, 71)
 m.LocationBuffCloseDialog = Location(715, 2153)
+
+m.PathReConfirmation = PathParent .. "re2.png"
+m.RegionReConfirmation = Region(90, 890, 120, 62)

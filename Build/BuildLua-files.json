@@ -66,6 +66,20 @@
     { "Type": "General", "Path": "script/CustomActions.lua" },
     { "Type": "General", "Path": "DLRaid.lua" }
   ],
+  "DLRaidSingle": [
+    { "Type": "Specific", "Path": "script/Configs.lua" },
+    { "Type": "CommonGeneral", "Path": "Logger.lua" },
+    { "Type": "CommonGeneral", "Path": "States+Advanced.lua" },
+    { "Type": "General", "Path": "script/States.lua" },
+    { "Type": "Specific", "Path": "script/Coordinates.lua" },
+    { "Type": "CommonGeneral", "Path": "RunsCounter.lua" },
+    { "Type": "CommonGeneral", "Path": "System+Advanced.lua" },
+    { "Type": "CommonGeneral", "Path": "CheckBase.lua" },
+    { "Type": "CommonGeneral", "Path": "ActionSet+Advanced.lua" },
+    { "Type": "General", "Path": "script/Check.lua" },
+    { "Type": "General", "Path": "script/CustomActions.lua" },
+    { "Type": "General", "Path": "DLRaid.lua" }
+  ],
   "DLStamina": [
     { "Type": "Specific", "Path": "script/Configs.lua" },
     { "Type": "CommonGeneral", "Path": "Logger.lua" },

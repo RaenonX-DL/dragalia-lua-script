@@ -12,7 +12,6 @@ local function click_quest_banner()
     setDragDropTiming(50, 50)
     setDragDropStepCount(80)
     setDragDropStepInterval(10)
-    dragDrop(Coordinates.LocationQuestSwipe1, Coordinates.LocationQuestSwipe2)
     wait(1)
 
     match_result = Coordinates.RegionBanner:exists(Coordinates.PathBanner, 0.5)
@@ -20,6 +19,8 @@ local function click_quest_banner()
         click(match_result:getTarget())
         return true
     end
+
+    dragDrop(Coordinates.LocationQuestSwipe1, Coordinates.LocationQuestSwipe2)
     return false
 end
 
