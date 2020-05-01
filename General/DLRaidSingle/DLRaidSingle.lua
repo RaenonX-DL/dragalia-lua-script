@@ -41,29 +41,39 @@ while true do
         States.update_state(States.IN_BATTLE)
     elseif States.current_state == States.IN_BATTLE then
         RunsCounter.counter_ready()
-        if not Check.check_dead() then
-            if not Check.check_in_battle() then
-                ActionSet.click_common3()
-            end
+        if Configs.AutoBattle then
+            if not Check.check_dead() then
+                if not Check.check_in_battle() then
+                    ActionSet.click_common3()
+                end
 
-            if not Check.check_end_game() then
-                ActionSet.click_common3()
-                ActionSet.use_skills()
-            end
+                if not Check.check_end_game() then
+                    ActionSet.click_common3()
+                    ActionSet.use_skills()
+                end
 
-            if not Check.dismiss_end_battle_mid_dialog() then
-                ActionSet.click_common3()
-                ActionSet.use_skills()
-            end
+                if not Check.dismiss_end_battle_mid_dialog() then
+                    ActionSet.click_common3()
+                    ActionSet.use_skills()
+                end
 
-            if not Check.check_post_game() then
-                ActionSet.click_common3()
-                ActionSet.use_skills()
-            end
+                if not Check.check_post_game() then
+                    ActionSet.click_common3()
+                    ActionSet.use_skills()
+                end
 
+                ActionSet.handle_connection_errors(function()
+                end)
+            end
+        else
+            Check.check_post_game()
+            Check.dismiss_end_battle_mid_dialog()
+            Check.check_end_game()
             ActionSet.handle_connection_errors(function()
             end)
         end
+
+        Check.check_center_close_dialog()
     elseif States.current_state == States.BATTLE_DEAD then
         Check.check_end_game()
         doubleClick(Coordinates.LocationCloseMiddleDialog)

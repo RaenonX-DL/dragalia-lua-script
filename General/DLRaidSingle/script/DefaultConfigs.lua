@@ -4,3 +4,5 @@
 
 m.DifficultyChecks = 3
 m.DifficultyCheckWaitSeconds = 0.7
+
+m.AutoBattle = false

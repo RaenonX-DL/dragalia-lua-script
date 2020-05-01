@@ -16,10 +16,11 @@ while true do
         end
     elseif States.current_state == States.DIFFICULTY then
         click(Coordinates.LocationDifficultyTop)
-        wait(1.5)
+        wait(2)
         Check.check_room_select()
     elseif States.current_state == States.ROOM_SELECT then
         click(Coordinates.LocationRandomRoom)
+        wait(1.5)
         Check.check_room_finding()
         Check.check_in_room()
         Check.check_insufficient_wings()

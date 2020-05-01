@@ -4,14 +4,20 @@ m.LocationCommonClick = Location(1188, 1730)
 
 m.LocationQuestSwipe1 = Location(720, 1600)
 m.LocationQuestSwipe2 = Location(720, 1000)
-m.RegionBanner = Region(0, 812, 1440, 1498)
+m.RegionBanner = Region(0, 600, 1440, 1498)
 m.PathBanner = PathParent .. "banner.png"
 
-m.LocationDifficultyTop = Location(736, 1008)
+if Configs.DifficultyPosition == 1 then
+    m.LocationDifficultyTop = Location(736, 1008)
+elseif Configs.DifficultyPosition == 2 then
+    m.LocationDifficultyTop = Location(715, 1496)
+else
+    scriptExit(string.format("Unknown `Configs.DifficultyPosition`: %d", Configs.DifficultyPosition))
+end
 m.PathDifficultyCheckItem = PathParent .. "diff.png"
 m.RegionDifficultyCheckItem = Region(40, 600, 295, 60)
 
-m.RegionRoomSelectCloseTxt = Region(630, 2140, 55, 60)
+m.RegionRoomSelectCloseTxt = Region(620, 2130, 75, 80)
 
 m.LocationRandomRoom = Location(1228, 1774)
 

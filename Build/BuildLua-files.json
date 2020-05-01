@@ -78,7 +78,7 @@
     { "Type": "CommonGeneral", "Path": "ActionSet+Advanced.lua" },
     { "Type": "General", "Path": "script/Check.lua" },
     { "Type": "General", "Path": "script/CustomActions.lua" },
-    { "Type": "General", "Path": "DLRaid.lua" }
+    { "Type": "General", "Path": "DLRaidSingle.lua" }
   ],
   "DLStamina": [
     { "Type": "Specific", "Path": "script/Configs.lua" },
